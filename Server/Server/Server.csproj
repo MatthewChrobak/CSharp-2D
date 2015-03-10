@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,17 +42,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\Enumerations.cs" />
+    <Compile Include="Data\Models\Layer.cs" />
+    <Compile Include="Data\Models\Entity.cs" />
+    <Compile Include="Data\Models\Location.cs" />
+    <Compile Include="Data\Models\Map.cs" />
+    <Compile Include="Data\Models\Npc.cs" />
+    <Compile Include="Data\Models\Player.cs" />
+    <Compile Include="Data\Settings.cs" />
+    <Compile Include="Data\Models\Tile.cs" />
+    <Compile Include="IO\Compression.cs" />
+    <Compile Include="IO\DataBuffer.cs" />
+    <Compile Include="IO\FolderSystem.cs" />
+    <Compile Include="IO\Serialization.cs" />
+    <Compile Include="Networking\iNetwork.cs" />
+    <Compile Include="Networking\NetworkManager.cs" />
+    <Compile Include="Networking\Net\Client.cs" />
+    <Compile Include="Networking\Net\Network.cs" />
+    <Compile Include="Networking\PacketManager.cs" />
+    <Compile Include="Networking\Packets.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Models\" />
-    <Folder Include="IO\" />
-    <Folder Include="Networking\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

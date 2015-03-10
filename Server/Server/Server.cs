@@ -1,24 +1,35 @@
 ﻿using System;
-using System.Threading;
+
+using Server.IO;
+using Server.Data;
+using Server.Networking;
 
 namespace Server
 {
     public static class Server
     {
         // Public accessors
+        public static Settings Settings;
 
         // Global values
         public static string StartupPath;
 
         private static void Main(string[] args) {
+            
+            // Get the tickcount at start.
+            double time = Environment.TickCount;
+            
             // Set the startup path of the application.
             StartupPath = AppDomain.CurrentDomain.BaseDirectory;
 
             // Check the folders and files in the system.
+            FolderSystem.Check();
 
             // Load the game data.
+            DataManager.Load();
 
             // Start the network.
+            NetworkManager.Initialize();
 
             // Set up the Destroy Server event handlers.
             Console.WriteLine("[IMPORTANT INFORMATION] : ");
@@ -29,6 +40,8 @@ namespace Server
             Console.CancelKeyPress += (s, e) => {
                 Server.Destroy();
             };
+
+            Console.WriteLine("Server started in " + ((time -= Environment.TickCount) / -1000) + " seconds.");
 
             // Start the gameloop.
             Server.GameLoop();
