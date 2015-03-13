@@ -1,5 +1,11 @@
 ﻿namespace Server.Data.Models
 {
+    public enum MapAttributes
+    {
+        None,
+        Length
+    }
+
     public class Tile
     {
         public Layer[] Layer;

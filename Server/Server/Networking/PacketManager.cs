@@ -18,6 +18,7 @@ namespace Server.Networking
 
             _handleData.Add(new HandleData(HandleRequestCreate));
             _handleData.Add(new HandleData(HandleRequestLogin));
+            _handleData.Add(new HandleData(HandleLeaveGame));
         }
 
         private static byte[] RemovePacketHead(byte[] array) {
@@ -32,8 +33,8 @@ namespace Server.Networking
             byte[] clippedArray = new byte[array.Length - 4];
 
             // Clip the data.
-            for (int i = 0; i < array.Length; i++) {
-                clippedArray[i] = array[i + 4];
+            for (int i = 4; i < array.Length; i++) {
+                clippedArray[i - 4] = array[i];
             }
 
             // Return it.
@@ -71,6 +72,9 @@ namespace Server.Networking
             if (player.Login(username, password)) {
                 SendEnterGame(index);
             }
+        }
+        private static void HandleLeaveGame(int index, byte[] array) {
+
         }
         #endregion
 

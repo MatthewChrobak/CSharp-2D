@@ -13,6 +13,7 @@ namespace Server.Networking.Net
         private List<Client> _client;
 
         public void Initialize() {
+            _client = new List<Client>();
             _server = new Socket(
                 AddressFamily.InterNetwork,
                 SocketType.Stream,
@@ -56,11 +57,9 @@ namespace Server.Networking.Net
                 using (var memory = new MemoryStream(client.Buffer)) {
                     using (var reader = new BinaryReader(memory)) {
                         if (reader.ReadInt32() == -1) {
-                            if (reader.ReadInt32() == -1) {
-                                client.canReceive = true;
-                            } else {
-                                PacketManager.HandlePacket(index, client.Buffer);
-                            }
+                            client.canReceive = true;
+                        } else {
+                            PacketManager.HandlePacket(index, client.Buffer);
                         }
                     }
                 }
@@ -98,7 +97,7 @@ namespace Server.Networking.Net
                 return;
             }
 
-            client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(AcceptCallBack), index);
+            client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(SendCallBack), index);
             client.canReceive = false;
         }
         private void SendDataWait(object packetObject) {
@@ -117,7 +116,7 @@ namespace Server.Networking.Net
                     return;
                 }
             }
-            client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(AcceptCallBack), index);
+            client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(SendCallBack), index);
             client.canReceive = false;
         }
 

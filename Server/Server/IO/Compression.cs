@@ -13,8 +13,7 @@ namespace Server.IO
         }
 
         public static void DecompressDirectory(string file, string directory) {
-            
-            // If the directory does not exist, creat it.
+            // If the directory does not exist, create it.
             if (!Directory.Exists(directory)) {
                 Directory.CreateDirectory(directory);
             }

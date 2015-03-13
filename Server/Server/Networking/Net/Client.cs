@@ -18,7 +18,7 @@ namespace Server.Networking.Net
         }
 
         public void Disconnect() {
-            Console.WriteLine("Client at " + Socket.RemoteEndPoint.AddressFamily.ToString().Remove(Socket.RemoteEndPoint.ToString().IndexOf(':')) + "disconnected.");
+            Console.WriteLine("Client at " + Socket.RemoteEndPoint.ToString().Remove(Socket.RemoteEndPoint.ToString().IndexOf(':')) + " disconnected.");
 
             Socket.Disconnect(true);
             Connected = false;
