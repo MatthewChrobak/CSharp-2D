@@ -75,6 +75,10 @@ namespace Server.Networking.Net
             int index = (int)ar.AsyncState;
             _client[index].Socket.EndSend(ar);
         }
+        private void SendFileCallBack(IAsyncResult ar) {
+            int index = (int)ar.AsyncState;
+            _client[index].Socket.EndSendFile(ar);
+        }
 
         public void SendDataTo(int index, byte[] array) {
             var client = _client[index];
@@ -117,6 +121,73 @@ namespace Server.Networking.Net
                 }
             }
             client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(SendCallBack), index);
+            client.canReceive = false;
+        }
+
+        public void SendFileTo(int index, string file) {
+            var client = _client[index];
+
+            if (!client.Connected) {
+                Console.WriteLine("Tried to send data to disconnected client " + index);
+                client.Disconnect();
+                return;
+            }
+
+            if (!File.Exists(file)) {
+                Console.WriteLine("Tried to send " + file + " which does not exist to " + index);
+                return;
+            }
+
+            if (!client.canReceive) {
+                object packetObject = new object[] { index, file };
+                var thread = new Thread(new ParameterizedThreadStart(SendFileWait));
+                thread.Start(packetObject);
+                return;
+            }
+
+            byte[] array = File.ReadAllBytes(file);
+
+            using (var memory = new MemoryStream()) {
+                using (var writer = new BinaryWriter(memory)) {
+                    writer.Write(-1);
+                    writer.Write(array.Length);
+                    writer.Write(file.Remove(0, Server.StartupPath.Length));
+                    SendDataTo(index, memory.ToArray());
+                }
+            }
+
+            client.Socket.BeginSendFile(file, new AsyncCallback(SendFileCallBack), index);
+            client.canReceive = false;
+        }
+        private void SendFileWait(object packetObject) {
+            Array packet = new object[2];
+            packet = (Array)packetObject;
+            int index = (int)packet.GetValue(0);
+            string file = (string)packet.GetValue(1);
+
+            var client = _client[index];
+
+            int start = Environment.TickCount;
+
+            while (!client.canReceive) {
+                if (Environment.TickCount - start > 1000) {
+                    Console.WriteLine("Dropped a file packet that was going to be sent to client " + index);
+                    return;
+                }
+            }
+
+            byte[] array = File.ReadAllBytes(file);
+
+            using (var memory = new MemoryStream()) {
+                using (var writer = new BinaryWriter(memory)) {
+                    writer.Write(-1);
+                    writer.Write(array.Length);
+                    writer.Write(file.Remove(0, Server.StartupPath.Length));
+                    SendDataTo(index, memory.ToArray());
+                }
+            }
+
+            client.Socket.BeginSendFile(file, new AsyncCallback(SendFileCallBack), index);
             client.canReceive = false;
         }
 

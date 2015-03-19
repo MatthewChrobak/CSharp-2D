@@ -14,9 +14,9 @@ namespace Client.Graphics.SFML.Scene.Objects
         public override void Draw() {
             if (ImageTag != null) {
                 if (Checked) {
-                    Sfml.RenderSurface(Sfml.GetSurface(this.ImageTag + "_marked"), new Vector2f(this.Left, this.Top), new Vector2f(this.Height, this.Height));
+                    Sfml.RenderSurface(Sfml.GetSurface(this.ImageTag + "_marked", SurfaceType.Gui), new Vector2f(this.Left, this.Top), new Vector2f(this.Height, this.Height));
                 } else {
-                    Sfml.RenderSurface(Sfml.GetSurface(this.ImageTag + "_unmarked"), new Vector2f(this.Left, this.Top), new Vector2f(this.Height, this.Height));
+                    Sfml.RenderSurface(Sfml.GetSurface(this.ImageTag + "_unmarked", SurfaceType.Gui), new Vector2f(this.Left, this.Top), new Vector2f(this.Height, this.Height));
                 }
 
                 if (Caption != null) {

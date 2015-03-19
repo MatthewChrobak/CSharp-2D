@@ -7,6 +7,11 @@ namespace Server.Data
 {
     public static class DataManager
     {
+        public static string DataPath = Server.StartupPath + "Data\\";
+        public static string MapPath = DataPath + "Maps\\";
+        public static string PlayerPath = DataPath + "Players\\";
+        public static string NpcPath = DataPath + "Npcs\\";
+
         public static List<Map> Map;
         public static List<Player> Player;
         public static List<Npc> Npc;

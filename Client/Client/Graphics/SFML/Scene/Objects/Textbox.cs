@@ -23,7 +23,7 @@ namespace Client.Graphics.SFML.Scene.Objects
 
         public override void Draw() {
             if (ImageTag != null) {
-                Sfml.RenderSurface(Sfml.GetSurface(this.ImageTag), new Vector2f(this.Left, this.Top), new Vector2f(this.Width, this.Height));
+                Sfml.RenderSurface(Sfml.GetSurface(this.ImageTag, SurfaceType.Gui), new Vector2f(this.Left, this.Top), new Vector2f(this.Width, this.Height));
 
                 if (this.Text != null) {
                     string text = this.Text;

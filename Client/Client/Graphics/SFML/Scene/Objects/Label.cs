@@ -17,7 +17,7 @@ namespace Client.Graphics.SFML.Scene.Objects
                     case "lblLogin":
                     case "lblOptions":
                     case "lblCreate":
-                        Sfml.RenderSurface(Sfml.GetSurface("blur"), new Vector2f(this.Left, this.Top), new Vector2f(this.Width * 3, this.Height), Color.Red);
+                        Sfml.RenderSurface(Sfml.GetSurface("blur", SurfaceType.Gui), new Vector2f(this.Left, this.Top), new Vector2f(this.Width * 3, this.Height), Color.Red);
                         break;
                 }
             }

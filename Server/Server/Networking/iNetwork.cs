@@ -8,5 +8,6 @@
         void SendDataToAll(byte[] array);
         void SendDataToMap(int map, byte[] array);
         void SendDataToAllBut(int exception, byte[] array);
+        void SendFileTo(int index, string file);
     }
 }

@@ -12,7 +12,7 @@ namespace Client.Graphics.SFML
 {
     public class Sfml : iGraphics
     {
-        private static List<GraphicalSurface> _surface;
+        private static List<GraphicalSurface>[] _surface;
         private static RenderWindow _backBuffer;
         private static Font _gameFont;
         private static iInput _input;
@@ -126,19 +126,31 @@ namespace Client.Graphics.SFML
         }
 
         private static void LoadSurfaces() {
-            _surface = new List<GraphicalSurface>();
+            _surface = new List<GraphicalSurface>[(int)SurfaceType.Length];
 
-            foreach (string File in Directory.GetFiles(Client.StartupPath + "\\data\\surfaces\\", "*.png")) {
-                _surface.Add(new GraphicalSurface(File));
+            for (int i = 0; i < (int)SurfaceType.Length; i++) {
+                _surface[i] = new List<GraphicalSurface>();
+            }
+
+            foreach (string file in Directory.GetFiles(GraphicsManager.GuiPath, "*.png")) {
+                _surface[(int)SurfaceType.Gui].Add(new GraphicalSurface(file));
             }
         }
-        public static GraphicalSurface GetSurface(string tagName) {
-            for (int i = 0; i < _surface.Count; i++) {
-                if (_surface[i].tag.ToLower() == tagName.ToLower()) {
-                    return _surface[i];
+        public static GraphicalSurface GetSurface(string tagName, SurfaceType type) {
+            for (int i = 0; i < _surface[(int)type].Count; i++) {
+                if (_surface[(int)type][i].tag.ToLower() == tagName.ToLower()) {
+                    return _surface[(int)type][i];
                 }
             }
             return null;
+        }
+        public static int GetSurfaceIndex(string tagName, SurfaceType type) {
+            for (int i = 0; i < _surface[(int)type].Count; i++) {
+                if (_surface[(int)type][i].tag.ToLower() == tagName.ToLower()) {
+                    return i;
+                }
+            }
+            return -1;
         }
         public static void LoadFont() {
             if (System.IO.File.Exists(Client.StartupPath + "data\\fonts\\" + Client.Settings.Font + ".ttf")) {

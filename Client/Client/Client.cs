@@ -20,7 +20,7 @@ namespace Client
         public static bool inGame;
 
         [STAThread]
-        private static void Main() {
+        private static void Main(string[] args) {
             // Set the startup path of the application.
             StartupPath = AppDomain.CurrentDomain.BaseDirectory;
 

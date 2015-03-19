@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Collections.Generic;
 
 namespace Client.Networking.Net
 {
@@ -10,6 +11,11 @@ namespace Client.Networking.Net
         private byte[] _buffer;
         private Socket _client;
         private bool _connected;
+
+        private List<byte> _fileData;
+        private string _file;
+        private int _fileSize;
+        private bool _incomingFile;
 
         public void Initialize() {
             _client = new Socket(
@@ -53,7 +59,40 @@ namespace Client.Networking.Net
 
             Array.Resize(ref _buffer, length);
             SendCanReceive();
-            PacketManager.HandlePacket(_buffer);
+
+            if (length > 0) {
+                if (_incomingFile) {
+
+                    // Update the file stuff.
+                    foreach (byte data in _buffer) {
+                        _fileData.Add(data);
+                    }
+
+                    // Write the file and clear our stuff.
+                    if (_fileData.Count == _fileSize) {
+                        _incomingFile = false;
+                        _fileSize = 0;
+                        File.WriteAllBytes(Client.StartupPath + _file, _fileData.ToArray());
+                        _file = "";
+                        _fileData = null;
+                    }
+
+                } else {
+                    using (var memory = new MemoryStream(_buffer)) {
+                        using (var reader = new BinaryReader(memory)) {
+                            if (reader.ReadInt32() == -1) {
+                                _fileSize = reader.ReadInt32();
+                                _file = reader.ReadString();
+                                _fileData = new List<byte>(_fileSize);
+                                _incomingFile = true;
+                            } else {
+                                PacketManager.HandlePacket(_buffer);
+                            }
+                        }
+                    }
+                }
+            }
+
             Array.Resize(ref _buffer, _client.ReceiveBufferSize);
             _client.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), null);   
         }

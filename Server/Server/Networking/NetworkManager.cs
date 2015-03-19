@@ -25,5 +25,9 @@
         public static void SendDataToAllBut(int exception, byte[] array) {
             _network.SendDataToAllBut(exception, array);
         }
+
+        public static void SendFile(int index, string file) {
+            _network.SendFileTo(index, file);
+        }
     }
 }
