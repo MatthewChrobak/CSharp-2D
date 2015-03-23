@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D33149A8-BA96-49E8-9B2D-325BA2A1A483}</ProjectGuid>
+    <ProjectGuid>{2EFD5BFA-74EA-44B7-996E-279F5BCD70FD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <RootNamespace>MapEditor</RootNamespace>
+    <AssemblyName>MapEditor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="sfmlnet-graphics-2">
       <HintPath>..\..\..\..\..\Copy\Programming\C#\Libraries\SFML 2.1\32 bit\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
@@ -40,7 +41,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,21 +51,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
     <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Data\Models\Entity.cs" />
     <Compile Include="Data\Models\Layer.cs" />
-    <Compile Include="Data\Models\Location.cs" />
     <Compile Include="Data\Models\Map.cs" />
-    <Compile Include="Data\Models\Npc.cs" />
-    <Compile Include="Data\Models\Player.cs" />
     <Compile Include="Data\Models\Tile.cs" />
     <Compile Include="Data\Settings.cs" />
-    <Compile Include="Forms\GameWindow.cs">
+    <Compile Include="Editor.cs" />
+    <Compile Include="Forms\EditorWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\GameWindow.Designer.cs">
-      <DependentUpon>GameWindow.cs</DependentUpon>
+    <Compile Include="Forms\EditorWindow.Designer.cs">
+      <DependentUpon>EditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MapTreeWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapTreeWindow.Designer.cs">
+      <DependentUpon>MapTreeWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TilesetWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TilesetWindow.Designer.cs">
+      <DependentUpon>TilesetWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\iGraphics.cs" />
@@ -75,24 +83,19 @@
     </Compile>
     <Compile Include="Graphics\SFML\GraphicalSurface.cs" />
     <Compile Include="Graphics\SFML\Input.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Button.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\CheckBox.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Image.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Label.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Textbox.cs" />
-    <Compile Include="Graphics\SFML\Scene\SceneManager.cs" />
-    <Compile Include="Graphics\SFML\Scene\SceneObject.cs" />
     <Compile Include="Graphics\SFML\Sfml.cs" />
-    <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\DataBuffer.cs" />
-    <Compile Include="IO\FolderSystem.cs" />
     <Compile Include="IO\Serialization.cs" />
-    <Compile Include="Networking\iNetwork.cs" />
-    <Compile Include="Networking\NetworkManager.cs" />
-    <Compile Include="Networking\Net\Network.cs" />
-    <Compile Include="Networking\PacketManager.cs" />
-    <Compile Include="Networking\Packets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\EditorWindow.resx">
+      <DependentUpon>EditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapTreeWindow.resx">
+      <DependentUpon>MapTreeWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TilesetWindow.resx">
+      <DependentUpon>TilesetWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,9 +116,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">
@@ -134,7 +135,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

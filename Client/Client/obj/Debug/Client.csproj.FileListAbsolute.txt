@@ -6,10 +6,10 @@ C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\Client.
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\Client.pdb
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\obj\Debug\Client.exe
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\obj\Debug\Client.pdb
+C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\sfmlnet-graphics-2.dll
+C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\sfmlnet-window-2.dll
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\csfml-audio-2.dll
-C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\csfml-graphics-2.dll
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\csfml-window-2.dll
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\libsndfile-1.dll
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\openal32.dll
-C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\sfmlnet-graphics-2.dll
-C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\sfmlnet-window-2.dll
+C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\Client\Client\bin\Debug\Binaries\csfml-graphics-2.dll
