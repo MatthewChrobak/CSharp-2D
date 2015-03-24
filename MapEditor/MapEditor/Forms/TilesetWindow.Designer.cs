@@ -27,13 +27,15 @@
         private void InitializeComponent() {
             this.menu = new System.Windows.Forms.MenuStrip();
             this.Tilesets = new System.Windows.Forms.ToolStripComboBox();
+            this.Layer = new System.Windows.Forms.ToolStripComboBox();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Tilesets});
+            this.Tilesets,
+            this.Layer});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(426, 27);
@@ -44,6 +46,17 @@
             // 
             this.Tilesets.Name = "Tilesets";
             this.Tilesets.Size = new System.Drawing.Size(121, 23);
+            // 
+            // Layer
+            // 
+            this.Layer.Items.AddRange(new object[] {
+            "Mask1",
+            "Mask2",
+            "Ground",
+            "Fringe1",
+            "Fringe2"});
+            this.Layer.Name = "Layer";
+            this.Layer.Size = new System.Drawing.Size(121, 23);
             // 
             // TilesetWindow
             // 
@@ -56,6 +69,7 @@
             this.MaximumSize = new System.Drawing.Size(1500, 750);
             this.Name = "TilesetWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Pallete_FormClosing);
+            this.Load += new System.EventHandler(this.TilesetWindow_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -67,6 +81,7 @@
 
         private System.Windows.Forms.MenuStrip menu;
         public System.Windows.Forms.ToolStripComboBox Tilesets;
+        public System.Windows.Forms.ToolStripComboBox Layer;
 
     }
 }

@@ -7,7 +7,7 @@ namespace MapEditor.Data
 {
     public static class DataManager
     {
-        public static int curMap;
+        public static int curMap = -1;
         public static List<Map> Map;
 
         public static void Load() {

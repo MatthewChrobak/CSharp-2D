@@ -24,5 +24,9 @@ namespace MapEditor.Forms
         private void hiToolStripMenuItem_Click(object sender, EventArgs e) {
             menu.Visible = false;
         }
+
+        private void TilesetWindow_Load(object sender, EventArgs e) {
+            Layer.SelectedIndex = 0;
+        }
     }
 }

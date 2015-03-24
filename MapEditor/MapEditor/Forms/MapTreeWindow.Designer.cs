@@ -43,7 +43,7 @@
             this.cmdDelete.Name = "cmdDelete";
             this.cmdDelete.Size = new System.Drawing.Size(81, 42);
             this.cmdDelete.TabIndex = 4;
-            this.cmdDelete.Text = "Delete";
+            this.cmdDelete.Text = "Delete Map";
             this.cmdDelete.UseVisualStyleBackColor = true;
             // 
             // cmdNew
@@ -53,8 +53,9 @@
             this.cmdNew.Name = "cmdNew";
             this.cmdNew.Size = new System.Drawing.Size(81, 42);
             this.cmdNew.TabIndex = 5;
-            this.cmdNew.Text = "New";
+            this.cmdNew.Text = "New Map";
             this.cmdNew.UseVisualStyleBackColor = false;
+            this.cmdNew.Click += new System.EventHandler(this.cmdNew_Click);
             // 
             // MapTreeWindow
             // 

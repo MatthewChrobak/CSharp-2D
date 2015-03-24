@@ -134,6 +134,22 @@ namespace MapEditor.Graphics.SFML
             _hover.Position = new Vector2f(Input.StartX * 32, Input.StartY * 32);
             _hover.Size = new Vector2f((Input.FinishX - Input.StartX) * 32 + 32, (Input.FinishY - Input.StartY) * 32 + 32);
             _tilesetBuffer.Draw(_hover);
+
+            if (DataManager.curMap != -1) {
+                var map = DataManager.Map[DataManager.curMap];
+
+                for (int x = 0; x < map.Width; x++) {
+                    for (int y = 0; y < map.Height; y++) {
+                        var tile = map.Tile[x, y];
+                        
+                        for (int l = 0; l < (int)MapLayers.Length; l++) {
+                            var layer = tile.Layer[l];
+
+                            RenderSurface(_surface[(int)SurfaceType.Tileset][layer.Tileset], new Vector2f(x * 32, y * 32), new IntRect(layer.X * 32, layer.Y * 32, 32, 32));
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -71,7 +71,12 @@ namespace MapEditor.Forms
             if (Editor.MapTreeWindow.treeMaps.TopNode != null) {
                 Editor.MapTreeWindow.treeMaps.TopNode.Remove();
             }
-            
+
+            Editor.MapTreeWindow.treeMaps.Nodes.Add("Maps");
+        }
+
+        private void propertiesToolStripMenuItem1_Click(object sender, EventArgs e) {
+
         }
     }
 }

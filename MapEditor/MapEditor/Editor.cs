@@ -15,6 +15,7 @@ namespace MapEditor
     {
         public static MapTreeWindow MapTreeWindow;
         public static TilesetWindow TilesetWindow;
+        public static MapPropertiesWindow MapPropertiesWindow;
         public static EditorWindow Window;
         public static Settings Settings;
 
@@ -32,6 +33,7 @@ namespace MapEditor
             Window = new EditorWindow(30 * 32, 20 * 32);
             TilesetWindow = new TilesetWindow();
             MapTreeWindow = new MapTreeWindow();
+            MapPropertiesWindow = new MapPropertiesWindow();
 
             // Initialize the event-handlers and properties.
 

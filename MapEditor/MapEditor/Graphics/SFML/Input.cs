@@ -71,6 +71,21 @@ namespace MapEditor.Graphics.SFML
                     } else {
                         FinishY = y;
                     }
+                } else {
+                    if (Data.DataManager.curMap != -1) {
+                        var map = Data.DataManager.Map[Data.DataManager.curMap];
+
+                        for (x = StartX; x < FinishX; x++) {
+                            for (y = StartY; y < FinishY; y++) {
+
+                                if (y < map.Height && x < map.Width) {
+                                    map.Tile[x, y].Layer[Editor.TilesetWindow.Layer.SelectedIndex].Tileset = Editor.TilesetWindow.Tilesets.SelectedIndex;
+                                    map.Tile[x, y].Layer[Editor.TilesetWindow.Layer.SelectedIndex].X = x;
+                                    map.Tile[x, y].Layer[Editor.TilesetWindow.Layer.SelectedIndex].Y = y;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
