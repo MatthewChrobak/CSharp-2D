@@ -12,8 +12,44 @@ namespace MapEditor.Forms
 {
     public partial class MapPropertiesWindow : Form
     {
+        private Data.Models.Map _map;
+
         public MapPropertiesWindow() {
             InitializeComponent();
+        }
+
+        private void MapPropertiesWindow_Load(object sender, EventArgs e) {
+            _map = Data.DataManager.Map[Data.DataManager.curMap];
+            txtWidth.Text = _map.Width.ToString();
+            txtHeight.Text = _map.Height.ToString();
+            txtMapName.Text = _map.Name;
+        }
+
+        private void cmdOkay_Click(object sender, EventArgs e) {
+            int height;
+            int width;
+
+            Int32.TryParse(txtWidth.Text, out height);
+            Int32.TryParse(txtWidth.Text, out width);
+
+            if (height > 255) {
+                height = 255;
+            } else if (height < 30) {
+                height = 30;
+            }
+
+            if (width > 255) {
+                width = 255;
+            } else if (width < 30) {
+                width = 30;
+            }
+
+            _map.Width = width;
+            _map.Height = height;
+            _map.Name = txtMapName.Text;
+
+            Editor.MapTreeWindow.treeMaps.TopNode.Nodes[Data.DataManager.curMap].Text = Data.DataManager.curMap + ": " + txtMapName.Text;
+            this.Close();
         }
     }
 }

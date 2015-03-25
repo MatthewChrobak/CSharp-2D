@@ -21,8 +21,7 @@ namespace MapEditor.Forms
         void treeMaps_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e) {
             if (e.Node != treeMaps.TopNode) {
                 if (treeMaps.TopNode.Nodes[e.Node.Index].IsSelected) {
-                    Data.DataManager.curMap = treeMaps.TopNode.GetNodeCount(false) - 1;
-                    Data.DataManager.Map.Add(new Data.Models.Map());
+                    Data.DataManager.curMap = e.Node.Index;
                 }
             }
         }
@@ -45,7 +44,13 @@ namespace MapEditor.Forms
         private void cmdNew_Click(object sender, EventArgs e) {
             if (treeMaps.TopNode != null) {
                 treeMaps.TopNode.Nodes.Add("New Map");
+                treeMaps.TopNode.Expand();
+                Data.DataManager.Map.Add(new Data.Models.Map());
             }
+        }
+
+        private void cmdDelete_Click(object sender, EventArgs e) {
+
         }
     }
 }

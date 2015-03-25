@@ -2,16 +2,17 @@
 {
     public class Map
     {
-        public int Width;
-        public int Height;
+        public string Name = "";
+        public int Width = 0;
+        public int Height = 0;
 
         public Tile[,] Tile;
 
         public Map() {
-            Tile = new Tile[Width, Height];
+            Tile = new Tile[255, 255];
 
-            for (int x = 0; x < Width; x++) {
-                for (int y = 0; y < Height; y++) {
+            for (int x = 0; x < 255; x++) {
+                for (int y = 0; y < 255; y++) {
                     Tile[x, y] = new Tile() { Attribute = 0 };
                 }
             }

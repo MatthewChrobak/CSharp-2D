@@ -128,6 +128,7 @@ namespace MapEditor.Graphics.SFML
 
             if (Editor.TilesetWindow.Tilesets.SelectedIndex != -1) {
                 var sprite = _surface[(int)SurfaceType.Tileset][Editor.TilesetWindow.Tilesets.SelectedIndex].sprite;
+                sprite.Position = new Vector2f(0, 0);
                 _tilesetBuffer.Draw(sprite);
             }
             

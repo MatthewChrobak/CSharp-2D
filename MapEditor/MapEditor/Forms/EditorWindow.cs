@@ -31,7 +31,8 @@ namespace MapEditor.Forms
         }
 
         private void OpenFileDialog_FileOk(object sender, CancelEventArgs e) {
-            
+            Editor.Settings.ExportFolder = OpenFileDialog.FileName;
+            Data.DataManager.LoadCache();
         }
 
         private void exportToToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -52,7 +53,8 @@ namespace MapEditor.Forms
         }
 
         private void SaveFileDialog_FileOk(object sender, CancelEventArgs e) {
-            
+            Editor.Settings.ExportFolder = SaveFileDialog.FileName;
+            Data.DataManager.SaveCache();
         }
 
         private void tilesetToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -76,7 +78,14 @@ namespace MapEditor.Forms
         }
 
         private void propertiesToolStripMenuItem1_Click(object sender, EventArgs e) {
+            if (Data.DataManager.curMap == -1) {
+                return;
+            }
+            new MapPropertiesWindow().ShowDialog();
+        }
 
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e) {
+            Data.DataManager.SaveCache();
         }
     }
 }

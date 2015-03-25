@@ -32,3 +32,4 @@ C:\Users\Matthew\Documents\MapEditor\MapEditor\obj\Debug\MapEditor.Forms.Tileset
 C:\Users\Matthew\Documents\MapEditor\MapEditor\obj\Debug\MapEditor.Forms.MapTreeWindow.resources
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\MapEditor\MapEditor\obj\Debug\MapEditor.Forms.MapTreeWindow.resources
 C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\MapEditor\MapEditor\obj\Debug\MapEditor.Forms.TilesetWindow.resources
+C:\Users\Matthew\Documents\GitHub\Eclipse-CSharp\MapEditor\MapEditor\obj\Debug\MapEditor.Forms.MapPropertiesWindow.resources

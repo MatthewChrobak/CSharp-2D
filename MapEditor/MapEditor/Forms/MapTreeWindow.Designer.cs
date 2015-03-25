@@ -45,6 +45,7 @@
             this.cmdDelete.TabIndex = 4;
             this.cmdDelete.Text = "Delete Map";
             this.cmdDelete.UseVisualStyleBackColor = true;
+            this.cmdDelete.Click += new System.EventHandler(this.cmdDelete_Click);
             // 
             // cmdNew
             // 
