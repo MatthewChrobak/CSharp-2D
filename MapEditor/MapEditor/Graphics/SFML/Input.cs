@@ -12,12 +12,18 @@ namespace MapEditor.Graphics.SFML
         public static int FinishX = 0;
         public static int FinishY = 0;
         private static bool _mouseDown;
+        private static bool _rightMouse;
         public static bool MainFocus = true;
 
         public void MouseDown(object sender, object obj) {
             // Convert the object into a MouseButtonEventArgs object.
             var e = (MouseButtonEventArgs)obj;
             var owner = (RenderWindow)sender;
+            if (e.Button == Mouse.Button.Right) {
+                _rightMouse = true;
+            } else {
+                _rightMouse = false;
+            }
 
             int x = Convert.ToInt32(Math.Floor((double)e.X / 32));
             int y = Convert.ToInt32(Math.Floor((double)e.Y / 32));
@@ -75,13 +81,17 @@ namespace MapEditor.Graphics.SFML
                     if (Data.DataManager.curMap != -1) {
                         var map = Data.DataManager.Map[Data.DataManager.curMap];
 
-                        for (x = StartX; x < FinishX; x++) {
-                            for (y = StartY; y < FinishY; y++) {
-
-                                if (y < map.Height && x < map.Width) {
-                                    map.Tile[x, y].Layer[Editor.TilesetWindow.Layer.SelectedIndex].Tileset = Editor.TilesetWindow.Tilesets.SelectedIndex;
-                                    map.Tile[x, y].Layer[Editor.TilesetWindow.Layer.SelectedIndex].X = x;
-                                    map.Tile[x, y].Layer[Editor.TilesetWindow.Layer.SelectedIndex].Y = y;
+                        for (int tX = StartX; tX <= FinishX; tX++) {
+                            for (int tY = StartY; tY <= FinishY; tY++) {
+                                if (tX >= 0 && tY >= 0) {
+                                    var layer = map.Tile[x + tX, y + tY].Layer[Editor.TilesetWindow.Layer.SelectedIndex];
+                                    if (_rightMouse) {
+                                        layer.Tileset = 0;
+                                    } else {
+                                        layer.Tileset = Editor.TilesetWindow.Tilesets.SelectedIndex;
+                                    }
+                                    layer.X = tX;
+                                    layer.Y = tY;
                                 }
                             }
                         }

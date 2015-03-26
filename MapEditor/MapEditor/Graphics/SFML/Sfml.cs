@@ -111,7 +111,7 @@ namespace MapEditor.Graphics.SFML
             if (Directory.Exists(Editor.Settings.GraphicsFolder + "\\tilesets\\")) {
                 foreach (string file in Directory.GetFiles(Editor.Settings.GraphicsFolder + "\\tilesets\\", "*.png")) {
                     _surface[(int)SurfaceType.Tileset].Add(new GraphicalSurface(file));
-                    Editor.TilesetWindow.Tilesets.Items.Add(_surface[(int)SurfaceType.Tileset][_surface.Length - 1].tag);
+                    Editor.TilesetWindow.Tilesets.Items.Add(_surface[(int)SurfaceType.Tileset][_surface[(int)SurfaceType.Tileset].Count - 1].tag);
                 }
             }
         }
@@ -129,6 +129,7 @@ namespace MapEditor.Graphics.SFML
             if (Editor.TilesetWindow.Tilesets.SelectedIndex != -1) {
                 var sprite = _surface[(int)SurfaceType.Tileset][Editor.TilesetWindow.Tilesets.SelectedIndex].sprite;
                 sprite.Position = new Vector2f(0, 0);
+                sprite.TextureRect = new IntRect(0, 0, (int)sprite.Texture.Size.X, (int)sprite.Texture.Size.Y);
                 _tilesetBuffer.Draw(sprite);
             }
             
@@ -146,7 +147,9 @@ namespace MapEditor.Graphics.SFML
                         for (int l = 0; l < (int)MapLayers.Length; l++) {
                             var layer = tile.Layer[l];
 
-                            RenderSurface(_surface[(int)SurfaceType.Tileset][layer.Tileset], new Vector2f(x * 32, y * 32), new IntRect(layer.X * 32, layer.Y * 32, 32, 32));
+                            if (layer.Tileset > 0) {
+                                RenderSurface(_surface[(int)SurfaceType.Tileset][layer.Tileset], new Vector2f(x * 32, y * 32), new IntRect(layer.X * 32, layer.Y * 32, 32, 32));
+                            }
                         }
                     }
                 }

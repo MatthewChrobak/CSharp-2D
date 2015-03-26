@@ -50,9 +50,9 @@
             // Layer
             // 
             this.Layer.Items.AddRange(new object[] {
+            "Ground",
             "Mask1",
             "Mask2",
-            "Ground",
             "Fringe1",
             "Fringe2"});
             this.Layer.Name = "Layer";
