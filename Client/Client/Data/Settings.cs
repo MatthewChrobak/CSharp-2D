@@ -1,8 +1,10 @@
-﻿namespace Client.Data
+﻿using Client;
+
+namespace Data
 {
     public class Settings
     {
-        public static string File = Client.StartupPath + "data\\settings.xml";
+        public static string File = Application.StartupPath + "data\\settings.xml";
 
         public string GameName = "Eclipse CSharp";
         public int Port = 7001;

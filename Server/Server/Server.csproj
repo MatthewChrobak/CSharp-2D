@@ -43,14 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Data\Models\Layer.cs" />
+    <Compile Include="Data\Models\Maps\Attribute.cs" />
     <Compile Include="Data\Models\Entity.cs" />
     <Compile Include="Data\Models\Location.cs" />
-    <Compile Include="Data\Models\Map.cs" />
-    <Compile Include="Data\Models\Npc.cs" />
-    <Compile Include="Data\Models\Player.cs" />
+    <Compile Include="Data\Models\Maps\Map.cs" />
+    <Compile Include="Data\Models\Npcs\Npc.cs" />
+    <Compile Include="Data\Models\Players\Player.cs" />
     <Compile Include="Data\Settings.cs" />
-    <Compile Include="Data\Models\Tile.cs" />
+    <Compile Include="Data\Models\Maps\Tile.cs" />
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\DataBuffer.cs" />
     <Compile Include="IO\FolderSystem.cs" />

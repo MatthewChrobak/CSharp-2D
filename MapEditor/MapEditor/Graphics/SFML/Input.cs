@@ -3,6 +3,8 @@
 using SFML.Window;
 using SFML.Graphics;
 
+using MapEditor.Data.Models.Maps;
+
 namespace MapEditor.Graphics.SFML
 {
     public class Input : iInput
@@ -25,8 +27,8 @@ namespace MapEditor.Graphics.SFML
                 _rightMouse = false;
             }
 
-            int x = Convert.ToInt32(Math.Floor((double)e.X / 32));
-            int y = Convert.ToInt32(Math.Floor((double)e.Y / 32));
+            int x = Convert.ToInt32(Math.Floor((double)e.X / Tile.TileSize));
+            int y = Convert.ToInt32(Math.Floor((double)e.Y / Tile.TileSize));
 
             // Focus on the window if we don't already have the focus.
             if (owner.Size.X == Editor.Window.Size.Width - Editor.Window.HorizontalFormWeight) {
@@ -58,8 +60,8 @@ namespace MapEditor.Graphics.SFML
             // Convert the object into a MouseMoveEventArgs object.
             var e = (MouseMoveEventArgs)obj;
 
-            int x = Convert.ToInt32(Math.Floor((double)e.X / 32));
-            int y = Convert.ToInt32(Math.Floor((double)e.Y / 32));
+            int x = Convert.ToInt32(Math.Floor((double)e.X / Tile.TileSize));
+            int y = Convert.ToInt32(Math.Floor((double)e.Y / Tile.TileSize));
 
             if (_mouseDown) {
 
@@ -81,17 +83,33 @@ namespace MapEditor.Graphics.SFML
                     if (Data.DataManager.curMap != -1) {
                         var map = Data.DataManager.Map[Data.DataManager.curMap];
 
-                        for (int tX = StartX; tX <= FinishX; tX++) {
-                            for (int tY = StartY; tY <= FinishY; tY++) {
-                                if (tX >= 0 && tY >= 0) {
-                                    var layer = map.Tile[x + tX, y + tY].Layer[Editor.TilesetWindow.Layer.SelectedIndex];
-                                    if (_rightMouse) {
-                                        layer.Tileset = 0;
-                                    } else {
-                                        layer.Tileset = Editor.TilesetWindow.Tilesets.SelectedIndex;
+                        if (x < map.Width && y < map.Height) {
+                            for (int tX = StartX; tX <= FinishX; tX++) {
+                                for (int tY = StartY; tY <= FinishY; tY++) {
+                                    if (tX >= 0 && tY >= 0) {
+                                        int layerID = Editor.TilesetWindow.Layer.SelectedIndex;
+
+                                        if (layerID > -1) {
+                                            int layerType = (int)LayerType.Mask;
+                                            int MaskCount = map.Layers[(int)LayerType.Mask].Count;
+                                            int FringeCount = map.Layers[(int)LayerType.Fringe].Count;
+
+                                            if (layerID >= MaskCount) {
+                                                layerType = (int)LayerType.Fringe;
+                                            }
+
+                                            if (x + tX - StartX < map.Width && y + tY - StartY < map.Height) {
+                                                var layer = map.Tile[x + tX - StartX, y + tY - StartY].Layer[layerType];
+                                                if (_rightMouse) {
+                                                    layer[layerID].Tileset = -1;
+                                                } else {
+                                                    layer[layerID].Tileset = Editor.TilesetWindow.Tilesets.SelectedIndex;
+                                                }
+                                                layer[layerID].X = tX;
+                                                layer[layerID].Y = tY;
+                                            }
+                                        }
                                     }
-                                    layer.X = tX;
-                                    layer.Y = tY;
                                 }
                             }
                         }

@@ -1,4 +1,4 @@
-﻿namespace Client.Graphics.SFML
+﻿namespace Graphics.Sfml
 {
     public class BackBuffer : System.Windows.Forms.Control
     {

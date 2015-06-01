@@ -33,6 +33,7 @@ namespace MapEditor.Forms
         private void OpenFileDialog_FileOk(object sender, CancelEventArgs e) {
             Editor.Settings.ExportFolder = OpenFileDialog.FileName;
             Data.DataManager.LoadCache();
+            Editor.Window.Text = "Editing: None";
         }
 
         private void exportToToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -67,7 +68,7 @@ namespace MapEditor.Forms
         }
 
         private void newCacheToolStripMenuItem_Click(object sender, EventArgs e) {
-            Data.DataManager.Map = new List<Data.Models.Map>();
+            Data.DataManager.Map = new List<Data.Models.Maps.Map>();
             Data.DataManager.curMap = -1;
 
             if (Editor.MapTreeWindow.treeMaps.TopNode != null) {
@@ -75,6 +76,7 @@ namespace MapEditor.Forms
             }
 
             Editor.MapTreeWindow.treeMaps.Nodes.Add("Maps");
+            Editor.Window.Text = "Editing: None";
         }
 
         private void propertiesToolStripMenuItem1_Click(object sender, EventArgs e) {

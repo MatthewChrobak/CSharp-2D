@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace Client.IO
+namespace IO
 {
     public static class Compression
     {

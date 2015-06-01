@@ -51,15 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="Application.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\Models\Entity.cs" />
-    <Compile Include="Data\Models\Layer.cs" />
+    <Compile Include="Data\Models\Maps\Attribute.cs" />
+    <Compile Include="Data\Models\Maps\Layer.cs" />
     <Compile Include="Data\Models\Location.cs" />
-    <Compile Include="Data\Models\Map.cs" />
-    <Compile Include="Data\Models\Npc.cs" />
-    <Compile Include="Data\Models\Player.cs" />
-    <Compile Include="Data\Models\Tile.cs" />
+    <Compile Include="Data\Models\Maps\Map.cs" />
+    <Compile Include="Data\Models\Npcs\Npc.cs" />
+    <Compile Include="Data\Models\Players\Player.cs" />
+    <Compile Include="Data\Models\Maps\Tile.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Forms\GameWindow.cs">
       <SubType>Form</SubType>
@@ -68,26 +69,26 @@
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Graphics\GraphicsManager.cs" />
-    <Compile Include="Graphics\iGraphics.cs" />
-    <Compile Include="Graphics\iInput.cs" />
-    <Compile Include="Graphics\SFML\BackBuffer.cs">
+    <Compile Include="Graphics\IGraphics.cs" />
+    <Compile Include="Graphics\IInput.cs" />
+    <Compile Include="Graphics\Sfml\BackBuffer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Graphics\SFML\GraphicalSurface.cs" />
-    <Compile Include="Graphics\SFML\Input.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Button.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\CheckBox.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Image.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Label.cs" />
-    <Compile Include="Graphics\SFML\Scene\Objects\Textbox.cs" />
-    <Compile Include="Graphics\SFML\Scene\SceneManager.cs" />
-    <Compile Include="Graphics\SFML\Scene\SceneObject.cs" />
-    <Compile Include="Graphics\SFML\Sfml.cs" />
+    <Compile Include="Graphics\Sfml\GraphicalSurface.cs" />
+    <Compile Include="Graphics\Sfml\Input.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\Objects\Button.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\Objects\CheckBox.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\Objects\Image.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\Objects\Label.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\Objects\Textbox.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\SceneSystem.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\SceneObject.cs" />
+    <Compile Include="Graphics\Sfml\Sfml.cs" />
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\DataBuffer.cs" />
     <Compile Include="IO\FolderSystem.cs" />
     <Compile Include="IO\Serialization.cs" />
-    <Compile Include="Networking\iNetwork.cs" />
+    <Compile Include="Networking\INetwork.cs" />
     <Compile Include="Networking\NetworkManager.cs" />
     <Compile Include="Networking\Net\Network.cs" />
     <Compile Include="Networking\PacketManager.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Client.IO
+namespace IO
 {
     public class DataBuffer
     {

@@ -1,9 +1,8 @@
 ﻿using System.IO;
 
 using SFML.Graphics;
-using SFML.Window;
 
-namespace Client.Graphics.SFML
+namespace Graphics.Sfml
 {
     public class GraphicalSurface
     {

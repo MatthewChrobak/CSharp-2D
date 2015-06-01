@@ -6,5 +6,6 @@
 
         public string GameName = "Eclipse CSharp";
         public int Port = 7001;
+        public string GameCache = Server.StartupPath + "data\\gamecache.dat";
     }
 }

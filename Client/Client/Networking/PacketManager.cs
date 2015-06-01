@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Client.IO;
+using Client;
+using IO;
 
-namespace Client.Networking
+namespace Networking
 {
     public static class PacketManager
     {
@@ -17,6 +18,7 @@ namespace Client.Networking
 
             _handleData.Add(new HandleDataMethod(HandleNotification));
             _handleData.Add(new HandleDataMethod(HandleEnterGame));
+            //_handleData.Add(new HandleDataMethod(HandleVerifyCache));
         }
         private static byte[] RemovePacketHead(byte[] array) {
             // If the size of the entire buffer is 4, all the packet contains is the head.
@@ -49,13 +51,13 @@ namespace Client.Networking
 
         }
         private static void HandleEnterGame(byte[] array) {
-            Client.inGame = true;
+            Application.inGame = true;
         }
         #endregion
 
         #region Sending outgoing packets
         public static void SendRequestLogin(string username, string password) {
-            if (Client.inGame) {
+            if (Application.inGame) {
                 return;
             }
 
@@ -66,7 +68,7 @@ namespace Client.Networking
             NetworkManager.SendData(packet.toArray());
         }
         public static void SendRequestCreate(string username, string password) {
-            if (Client.inGame) {
+            if (Application.inGame) {
                 return;
             }
 
@@ -77,7 +79,7 @@ namespace Client.Networking
             NetworkManager.SendData(packet.toArray());
         }
         public static void SendLeaveGame() {
-            if (!Client.inGame) {
+            if (!Application.inGame) {
                 return;
             }
 
@@ -85,7 +87,7 @@ namespace Client.Networking
             packet.Write(Packets.SendLeaveGame);
             NetworkManager.SendData(packet.toArray());
 
-            Client.inGame = false;
+            Application.inGame = false;
         }
         #endregion
     }

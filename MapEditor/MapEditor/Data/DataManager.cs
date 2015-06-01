@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-using MapEditor.Data.Models;
+using MapEditor.Data.Models.Maps;
 using MapEditor.IO;
 
 namespace MapEditor.Data
@@ -34,7 +34,6 @@ namespace MapEditor.Data
                 Map.Clear();
 
                 var cache = new DataBuffer(Editor.Settings.ExportFolder);
-                string revision = cache.ReadString();
                 int count = cache.ReadInt();
 
                 for (int i = 0; i < count; i++) {
@@ -42,45 +41,66 @@ namespace MapEditor.Data
                     var map = Map[i];
 
                     map.Name = cache.ReadString();
-                    map.Width = cache.ReadInt();
-                    map.Height = cache.ReadInt();
+                    int width = cache.ReadInt();
+                    int height = cache.ReadInt();
+                    map.Resize(width, height);
+
+                    width = cache.ReadInt();
+                    height = cache.ReadInt();
+
+                    for (int l = 0; l < width; l++) {
+                        map.Layers[0].Add(l);
+                        Editor.TilesetWindow.Layer.Items.Add("Mask " + l);
+                        Editor.LayerTreeWindow.treeLayers.Nodes[0].Nodes.Add("Mask " + l);
+                    }
+
+                    for (int l = 0; l < height; l++) {
+                        map.Layers[1].Add(l);
+                        Editor.TilesetWindow.Layer.Items.Add("Fringe " + l);
+                        Editor.LayerTreeWindow.treeLayers.Nodes[1].Nodes.Add("Fringe " + l);
+                    }
 
                     for (int x = 0; x < map.Width; x++) {
                         for (int y = 0; y < map.Height; y++) {
                             var tile = map.Tile[x, y];
 
-                            tile.Attribute = cache.ReadInt();
+                            tile.Attribute.Type = cache.ReadInt();
 
-                            for (int l = 0; l < (int)MapLayers.Length; l++) {
-                                var layer = tile.Layer[l];
+                            for (int l = 0; l < width; l++){
+                                tile.Layer[0].Add(new Layer() { Tileset = -1 });
+                            }
 
-                                layer.Tileset = cache.ReadInt();
-                                layer.X = cache.ReadInt();
-                                layer.Y = cache.ReadInt();
+                            for (int l = 0; l < height; l++) {
+                                tile.Layer[1].Add(new Layer() { Tileset = -1 });
+                            }
+
+                            for (int l = 0; l < (int)LayerType.Length; l++) 
+                                foreach (var layer in tile.Layer[l]) {
+                                    layer.Tileset = cache.ReadInt();
+                                    layer.X = cache.ReadInt();
+                                    layer.Y = cache.ReadInt();
+                                }
                             }
                         }
                     }
-                }
 
-                curMap = -1;
+                    curMap = -1;
 
-                if (Editor.MapTreeWindow.treeMaps.TopNode != null) {
-                    Editor.MapTreeWindow.treeMaps.TopNode.Remove();
-                }
+                    if (Editor.MapTreeWindow.treeMaps.TopNode != null) {
+                        Editor.MapTreeWindow.treeMaps.TopNode.Remove();
+                    }
 
-                Editor.MapTreeWindow.treeMaps.Nodes.Add("Maps");
+                    Editor.MapTreeWindow.treeMaps.Nodes.Add("Maps");
 
-                for (int i = 0; i < Map.Count; i++) {
-                    Editor.MapTreeWindow.treeMaps.Nodes[0].Nodes.Add(i + ": " + Map[i].Name);
+                    for (int i = 0; i < Map.Count; i++) {
+                        Editor.MapTreeWindow.treeMaps.Nodes[0].Nodes.Add(i + ": " + Map[i].Name);
+                    }
                 }
             }
-        }
 
         public static void SaveCache() {
 
             var cache = new DataBuffer();
-            string cacheRevision = "1234567890";
-            cache.Write(cacheRevision);
             cache.Write(Map.Count);
 
             for (int i = 0; i < Map.Count; i++) {
@@ -89,19 +109,21 @@ namespace MapEditor.Data
                 cache.Write(map.Name);
                 cache.Write(map.Width);
                 cache.Write(map.Height);
+                cache.Write(map.Layers[0].Count);
+                cache.Write(map.Layers[1].Count);
 
                 for (int x = 0; x < map.Width; x++) {
                     for (int y = 0; y < map.Height; y++) {
                         var tile = map.Tile[x, y];
 
-                        cache.Write(tile.Attribute);
+                        cache.Write(tile.Attribute.Type);
 
-                        for (int l = 0; l < (int)MapLayers.Length; l++) {
-                            var layer = tile.Layer[l];
-
-                            cache.Write(layer.Tileset);
-                            cache.Write(layer.X);
-                            cache.Write(layer.Y);
+                        for (int l = 0; l < (int)LayerType.Length; l++) {
+                            foreach (var layer in tile.Layer[l]) {
+                                cache.Write(layer.Tileset);
+                                cache.Write(layer.X);
+                                cache.Write(layer.Y);
+                            }
                         }
                     }
                 }

@@ -34,7 +34,7 @@ namespace Server.Networking.Net
             _client.Add(client);
             Console.WriteLine("Accepted connection at " + client.Socket.RemoteEndPoint.ToString().Remove(client.Socket.RemoteEndPoint.ToString().IndexOf(':')));
             connection.BeginReceive(client.Buffer, 0, client.Buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), _client.Count - 1);
-            Data.DataManager.Player.Add(new Data.Models.Player());
+            Data.DataManager.Player.Add(new Data.Models.Players.Player());
 
             _server.Listen(5);
             _server.BeginAccept(new AsyncCallback(AcceptCallBack), null);

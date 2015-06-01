@@ -12,7 +12,7 @@ namespace MapEditor.Forms
 {
     public partial class MapPropertiesWindow : Form
     {
-        private Data.Models.Map _map;
+        private Data.Models.Maps.Map _map;
 
         public MapPropertiesWindow() {
             InitializeComponent();
@@ -44,11 +44,11 @@ namespace MapEditor.Forms
                 width = 30;
             }
 
-            _map.Width = width;
-            _map.Height = height;
+            _map.Resize(width, height);
             _map.Name = txtMapName.Text;
 
             Editor.MapTreeWindow.treeMaps.TopNode.Nodes[Data.DataManager.curMap].Text = Data.DataManager.curMap + ": " + txtMapName.Text;
+            Editor.Window.Text = "Editing: " + _map.Name;
             this.Close();
         }
     }

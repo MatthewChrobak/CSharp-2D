@@ -118,6 +118,9 @@ namespace MapEditor.IO
 
         // Saving gamefiles.
         public void Save(string file) {
+            if (file == "") {
+                return;
+            }
             if (File.Exists(file)) {
                 File.Delete(file);
             }

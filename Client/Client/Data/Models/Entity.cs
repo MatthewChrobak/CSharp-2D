@@ -1,15 +1,16 @@
-﻿namespace Client.Data.Models
+﻿namespace Data.Models
 {
     public enum Dir
     {
         Down,
-        Left,
         Right,
+        Left,
         Up,
         Length
     }
 
     public abstract class Entity : Location
     {
+
     }
 }

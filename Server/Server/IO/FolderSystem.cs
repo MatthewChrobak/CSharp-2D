@@ -11,8 +11,7 @@ namespace Server.IO
             string[] folders = {
                                  DataManager.DataPath,
                                  DataManager.PlayerPath,
-                                 DataManager.NpcPath,
-                                 DataManager.MapPath,
+                                 DataManager.NpcPath
                              };
 
             // Loop through all the directories in the array, and see

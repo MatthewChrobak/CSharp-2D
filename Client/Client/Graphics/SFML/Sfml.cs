@@ -4,20 +4,22 @@ using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.Window;
 
-using Client.Data.Models;
-using Client.Data;
-using Client.Graphics.SFML.Scene;
+using Client;
+using Data.Models;
+using Data;
+using Graphics.Sfml.Scenes;
 
-namespace Client.Graphics.SFML
+namespace Graphics.Sfml
 {
-    public class Sfml : iGraphics
+    public class Sfml : IGraphics
     {
-        private static List<GraphicalSurface>[] _surface;
-        private static RenderWindow _backBuffer;
-        private static Font _gameFont;
-        private static iInput _input;
+        public static RenderWindow BackBuffer { private set; get; }
+        public static SceneSystem Scene { private set; get; }
+        public static Font GameFont { private set; get; }
+        private List<GraphicalSurface>[] _surface;
         private Color _backBufferColor;
-
+        private IInput _input;
+        
         #region Core SFML
         public void Initialize() {
             // Load the graphics.
@@ -28,23 +30,23 @@ namespace Client.Graphics.SFML
 
             // Create a new drawing surface and make it 
             // the backbuffer.
-            _backBuffer = new RenderWindow(new BackBuffer(Client.Window,
-                Client.Window.Width - Client.Window.HorizontalFormWeight,
-                Client.Window.Height - Client.Window.VertivalFormWeight,
+            BackBuffer = new RenderWindow(new BackBuffer(Application.Window,
+                Application.Window.GetTrueSize().Width,
+                Application.Window.GetTrueSize().Height,
                 0, 0).GetHandle());
             _backBufferColor = new Color(25, 25, 25);
 
             // SFML event handlers for input.
             _input = new Input();
-            _backBuffer.MouseButtonPressed += _input.MouseDown;
-            _backBuffer.MouseButtonReleased += _input.MouseUp;
-            _backBuffer.MouseMoved += _input.MouseMove;
-            _backBuffer.KeyPressed += _input.KeyPress;
-            _backBuffer.KeyReleased += _input.KeyRelease;
-            _backBuffer.SetKeyRepeatEnabled(true);
+            BackBuffer.MouseButtonPressed += _input.MouseDown;
+            BackBuffer.MouseButtonReleased += _input.MouseUp;
+            BackBuffer.MouseMoved += _input.MouseMove;
+            BackBuffer.KeyPressed += _input.KeyPress;
+            BackBuffer.KeyReleased += _input.KeyRelease;
+            BackBuffer.SetKeyRepeatEnabled(true);
 
-            // Load the scene manager.
-            SceneManager.Load();
+            // Create a new scene system.
+            Scene = new SceneSystem();
         }
         public void Reload() {
         }
@@ -52,91 +54,24 @@ namespace Client.Graphics.SFML
 
         }
         public void Draw() {
-            _backBuffer.DispatchEvents();
-            _backBuffer.Clear(_backBufferColor);
+            BackBuffer.DispatchEvents();
+            BackBuffer.Clear(_backBufferColor);
             DrawGame();
-            _backBuffer.Display();
+            BackBuffer.Display();
         }
 
-        public static void RenderSurface(GraphicalSurface Surface, Vector2f Location, Vector2f Size, IntRect SurfaceRect, Color Color) {
-            if (Surface == null) {
-                return;
-            }
-            var sprite = Surface.sprite;
-            sprite.Position = Location;
-            sprite.TextureRect = SurfaceRect;
-            sprite.Scale = new Vector2f(Size.X / sprite.Texture.Size.X, Size.Y / sprite.Texture.Size.Y);
-            sprite.Color = Color;
-            _backBuffer.Draw(sprite);
-        }
-        public static void RenderSurface(GraphicalSurface Surface, Vector2f Location, Vector2f Size, IntRect SurfaceRect) {
-            if (Surface == null) {
-                return;
-            }
-            var sprite = Surface.sprite;
-            sprite.Position = Location;
-            sprite.TextureRect = SurfaceRect;
-            sprite.Scale = new Vector2f(Size.X / sprite.Texture.Size.X, Size.Y / sprite.Texture.Size.Y);
-            _backBuffer.Draw(sprite);
-        }
-        public static void RenderSurface(GraphicalSurface Surface, Vector2f Location, Vector2f Size, Color Color) {
-            if (Surface == null) {
-                return;
-            }
-            var sprite = Surface.sprite;
-            sprite.Position = Location;
-            sprite.Scale = new Vector2f(Size.X / sprite.Texture.Size.X, Size.Y / sprite.Texture.Size.Y);
-            sprite.Color = Color;
-            _backBuffer.Draw(sprite);
-        }
-        public static void RenderSurface(GraphicalSurface Surface, Vector2f Location, Vector2f Size) {
-            if (Surface == null) {
-                return;
-            }
-            var sprite = Surface.sprite;
-            sprite.Position = Location;
-            sprite.Scale = new Vector2f(Size.X / sprite.Texture.Size.X, Size.Y / sprite.Texture.Size.Y);
-            _backBuffer.Draw(sprite);
-        }
-        public static void RenderSurface(GraphicalSurface Surface, Vector2f Location, IntRect SurfaceRect) {
-            if (Surface == null) {
-                return;
-            }
-            var sprite = Surface.sprite;
-            sprite.Position = Location;
-            sprite.TextureRect = SurfaceRect;
-            _backBuffer.Draw(sprite);
-        }
-        public static void RenderSurface(GraphicalSurface Surface, Vector2f Location) {
-            if (Surface == null) {
-                return;
-            }
-            var sprite = Surface.sprite;
-            sprite.Position = Location;
-            _backBuffer.Draw(sprite);
-        }
-        public static void RenderText(string Str, Vector2f Location, Color Color, uint Size, Text.Styles FontStyle) {
-            var text = new Text(Str, _gameFont, Size);
-            text.Font = _gameFont;
-            text.Color = Color;
-            text.Style = FontStyle;
-            text.Position = Location;
-            _backBuffer.Draw(text);
-            text.Dispose();
-        }
-
-        private static void LoadSurfaces() {
+        private void LoadSurfaces() {
             _surface = new List<GraphicalSurface>[(int)SurfaceType.Length];
 
             for (int i = 0; i < (int)SurfaceType.Length; i++) {
                 _surface[i] = new List<GraphicalSurface>();
             }
 
-            foreach (string file in Directory.GetFiles(GraphicsManager.GuiPath, "*.png")) {
-                _surface[(int)SurfaceType.Gui].Add(new GraphicalSurface(file));
+            foreach (string file in Directory.GetFiles(GraphicsManager.SpritePath, "*.png")) {
+                _surface[(int)SurfaceType.Sprite].Add(new GraphicalSurface(file));
             }
         }
-        public static GraphicalSurface GetSurface(string tagName, SurfaceType type) {
+        public GraphicalSurface GetSurface(string tagName, SurfaceType type) {
             for (int i = 0; i < _surface[(int)type].Count; i++) {
                 if (_surface[(int)type][i].tag.ToLower() == tagName.ToLower()) {
                     return _surface[(int)type][i];
@@ -144,7 +79,7 @@ namespace Client.Graphics.SFML
             }
             return null;
         }
-        public static int GetSurfaceIndex(string tagName, SurfaceType type) {
+        public int GetSurfaceIndex(string tagName, SurfaceType type) {
             for (int i = 0; i < _surface[(int)type].Count; i++) {
                 if (_surface[(int)type][i].tag.ToLower() == tagName.ToLower()) {
                     return i;
@@ -152,23 +87,22 @@ namespace Client.Graphics.SFML
             }
             return -1;
         }
-        public static void LoadFont() {
-            if (System.IO.File.Exists(Client.StartupPath + "data\\fonts\\" + Client.Settings.Font + ".ttf")) {
-                _gameFont = new Font(Client.StartupPath + "data\\fonts\\" + Client.Settings.Font + ".ttf");
-            } else if (System.IO.File.Exists(Client.StartupPath + "data\\fonts\\" + Client.Settings.Font + ".otf")) {
-                _gameFont = new Font(Client.StartupPath + "data\\fonts\\" + Client.Settings.Font + ".otf");
+        public void LoadFont() {
+            if (System.IO.File.Exists(Application.StartupPath + "data\\fonts\\" + Application.Settings.Font + ".ttf")) {
+                GameFont = new Font(Application.StartupPath + "data\\fonts\\" + Application.Settings.Font + ".ttf");
+            } else if (System.IO.File.Exists(Application.StartupPath + "data\\fonts\\" + Application.Settings.Font + ".otf")) {
+                GameFont = new Font(Application.StartupPath + "data\\fonts\\" + Application.Settings.Font + ".otf");
             }
         }
         #endregion
 
-        private static void DrawGame() {
+        private void DrawGame() {
             
             // Are we in game?
-            if (Client.inGame) {
-                
-            }
+            if (Application.inGame) {
 
-            SceneManager.Draw();
+            }
+            Scene.Draw();
         }
     }
 }

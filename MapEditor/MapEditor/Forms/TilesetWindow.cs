@@ -26,7 +26,15 @@ namespace MapEditor.Forms
         }
 
         private void TilesetWindow_Load(object sender, EventArgs e) {
-            Layer.SelectedIndex = 0;
+
+        }
+
+        private void Layers_Click(object sender, EventArgs e) {
+            if (Data.DataManager.curMap == -1) {
+                return;
+            } 
+            
+            Editor.LayerTreeWindow.ShowDialog();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace Client.IO
+namespace IO
 {
     public static class Serialization
     {

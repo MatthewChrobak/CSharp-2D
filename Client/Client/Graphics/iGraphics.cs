@@ -1,6 +1,6 @@
-﻿namespace Client.Graphics
+﻿namespace Graphics
 {
-    interface iGraphics
+    interface IGraphics
     {
         void Initialize();
         void Destroy();

@@ -1,4 +1,4 @@
-﻿namespace Client.Forms
+﻿namespace Forms
 {
     partial class GameWindow
     {

@@ -1,6 +1,6 @@
-﻿namespace Client.Graphics
+﻿namespace Graphics
 {
-    interface iInput
+    interface IInput
     {
         void CheckKeys();
         void KeyPress(object arg1, object arg2);

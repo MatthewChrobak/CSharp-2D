@@ -1,6 +1,6 @@
-﻿namespace Client.Networking
+﻿namespace Networking
 {
-    interface iNetwork
+    interface INetwork
     {
         void Initialize();
         void Destroy();

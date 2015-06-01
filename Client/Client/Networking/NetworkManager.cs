@@ -1,8 +1,8 @@
-﻿namespace Client.Networking
+﻿namespace Networking
 {
     public static class NetworkManager
     {
-        private static iNetwork _network;
+        private static INetwork _network;
 
         public static void Initialize() {
             PacketManager.Initialize();

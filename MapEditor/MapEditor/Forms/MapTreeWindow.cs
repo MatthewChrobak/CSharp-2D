@@ -22,6 +22,21 @@ namespace MapEditor.Forms
             if (e.Node != treeMaps.TopNode) {
                 if (treeMaps.TopNode.Nodes[e.Node.Index].IsSelected) {
                     Data.DataManager.curMap = e.Node.Index;
+                    Editor.Window.Text = "Editing: " + Data.DataManager.Map[e.Node.Index].Name;
+
+                    Editor.TilesetWindow.Layer.Items.Clear();
+                    Editor.LayerTreeWindow.treeLayers.Nodes[0].Nodes.Clear();
+                    Editor.LayerTreeWindow.treeLayers.Nodes[1].Nodes.Clear();
+
+                    for (int i = 0; i < Data.DataManager.Map[Data.DataManager.curMap].Layers[0].Count; i++) {
+                        Editor.TilesetWindow.Layer.Items.Add("Mask " + i);
+                        Editor.LayerTreeWindow.treeLayers.Nodes[0].Nodes.Add("Mask " + i);
+                    }
+
+                    for (int i = 0; i < Data.DataManager.Map[Data.DataManager.curMap].Layers[1].Count; i++) {
+                        Editor.TilesetWindow.Layer.Items.Add("Fringe " + i);
+                        Editor.LayerTreeWindow.treeLayers.Nodes[1].Nodes.Add("Fringe " + i);
+                    }
                 }
             }
         }
@@ -45,7 +60,7 @@ namespace MapEditor.Forms
             if (treeMaps.TopNode != null) {
                 treeMaps.TopNode.Nodes.Add("New Map");
                 treeMaps.TopNode.Expand();
-                Data.DataManager.Map.Add(new Data.Models.Map());
+                Data.DataManager.Map.Add(new Data.Models.Maps.Map());
             }
         }
 

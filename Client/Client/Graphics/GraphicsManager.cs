@@ -1,4 +1,6 @@
-﻿namespace Client.Graphics
+﻿using Client;
+
+namespace Graphics
 {
     public enum SurfaceType
     {
@@ -6,24 +8,23 @@
         Paperdoll,
         Item,
         Tileset,
-        Gui,
         Length
     }
 
     public class GraphicsManager
     {
         // Paths
-        public static string SurfacePath = Client.StartupPath + "data\\surfaces\\";
+        public static string SurfacePath = Application.StartupPath + "data\\surfaces\\";
         public static string TilesetPath = SurfacePath + "Tilesets\\";
         public static string ItemPath = SurfacePath + "Items\\";
         public static string GuiPath = SurfacePath + "Gui\\";
         public static string PaperdollPath = SurfacePath + "Paperdoll\\";
         public static string SpritePath = SurfacePath + "Sprites\\";
 
-        private static iGraphics _graphics;
+        private static IGraphics _graphics;
 
         public static void Initialize() {
-            _graphics = new SFML.Sfml();
+            _graphics = new Sfml.Sfml();
             _graphics.Initialize();
         }
 

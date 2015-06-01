@@ -52,9 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataManager.cs" />
-    <Compile Include="Data\Models\Layer.cs" />
-    <Compile Include="Data\Models\Map.cs" />
-    <Compile Include="Data\Models\Tile.cs" />
+    <Compile Include="Data\Models\Maps\Layer.cs" />
+    <Compile Include="Data\Models\Maps\Map.cs" />
+    <Compile Include="Data\Models\Maps\Attribute.cs" />
+    <Compile Include="Data\Models\Maps\Tile.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Editor.cs" />
     <Compile Include="Forms\EditorWindow.cs">
@@ -62,6 +63,12 @@
     </Compile>
     <Compile Include="Forms\EditorWindow.Designer.cs">
       <DependentUpon>EditorWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LayerTreeWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LayerTreeWindow.Designer.cs">
+      <DependentUpon>LayerTreeWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MapPropertiesWindow.cs">
       <SubType>Form</SubType>
@@ -95,6 +102,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\EditorWindow.resx">
       <DependentUpon>EditorWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LayerTreeWindow.resx">
+      <DependentUpon>LayerTreeWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MapPropertiesWindow.resx">
       <DependentUpon>MapPropertiesWindow.cs</DependentUpon>

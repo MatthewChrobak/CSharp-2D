@@ -1,22 +1,23 @@
 ﻿using SFML.Window;
 
-using Client.Graphics.SFML.Scene;
+using Client;
+using Graphics.Sfml.Scenes;
 
-namespace Client.Graphics.SFML
+namespace Graphics.Sfml
 {
-    public class Input : iInput
+    public class Input : IInput
     {
         public void MouseDown(object sender, object obj) {
             // Convert the object into a MouseButtonEventArgs object.
             var e = (MouseButtonEventArgs)obj;
 
             // Focus on the window if we don't already have the focus.
-            if (!Client.Window.ContainsFocus) {
-                Client.Window.Focus();
+            if (!Application.Window.ContainsFocus) {
+                Application.Window.Focus();
             }
 
-            // Pass off the coords to the scene manager.
-            SceneManager.MouseDown(e.X, e.Y);
+            // Pass off the coords to the scene system.
+            Sfml.Scene.MouseDown(e.X, e.Y);
         }
 
         public void MouseUp(object sender, object obj) {
@@ -28,8 +29,8 @@ namespace Client.Graphics.SFML
             // Convert the object into a MouseMoveEventArgs object.
             var e = (MouseMoveEventArgs)obj;
 
-            // Pass off the coords tot he scene manager.
-            SceneManager.MouseMove(e.X, e.Y);
+            // Pass off the coords to the scene system.
+            Sfml.Scene.MouseMove(e.X, e.Y);
         }
 
         public void KeyPress(object sender, object obj) {
@@ -62,8 +63,8 @@ namespace Client.Graphics.SFML
                 }
             }
 
-            // Pass it off to the scene manager.
-            SceneManager.KeyDown(key); 
+            // Pass it off to the scene system.
+            Sfml.Scene.KeyDown(key); 
         }
 
         public void KeyRelease(object sender, object obj) {

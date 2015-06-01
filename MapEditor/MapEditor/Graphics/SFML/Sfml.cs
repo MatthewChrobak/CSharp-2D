@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.Window;
 
-using MapEditor.Data.Models;
+using MapEditor.Data.Models.Maps;
 using MapEditor.Data;
 
 namespace MapEditor.Graphics.SFML
@@ -133,8 +133,8 @@ namespace MapEditor.Graphics.SFML
                 _tilesetBuffer.Draw(sprite);
             }
             
-            _hover.Position = new Vector2f(Input.StartX * 32, Input.StartY * 32);
-            _hover.Size = new Vector2f((Input.FinishX - Input.StartX) * 32 + 32, (Input.FinishY - Input.StartY) * 32 + 32);
+            _hover.Position = new Vector2f(Input.StartX * Tile.TileSize, Input.StartY * Tile.TileSize);
+            _hover.Size = new Vector2f((Input.FinishX - Input.StartX) * Tile.TileSize + Tile.TileSize, (Input.FinishY - Input.StartY) * Tile.TileSize + Tile.TileSize);
             _tilesetBuffer.Draw(_hover);
 
             if (DataManager.curMap != -1) {
@@ -143,12 +143,12 @@ namespace MapEditor.Graphics.SFML
                 for (int x = 0; x < map.Width; x++) {
                     for (int y = 0; y < map.Height; y++) {
                         var tile = map.Tile[x, y];
-                        
-                        for (int l = 0; l < (int)MapLayers.Length; l++) {
-                            var layer = tile.Layer[l];
 
-                            if (layer.Tileset > 0) {
-                                RenderSurface(_surface[(int)SurfaceType.Tileset][layer.Tileset], new Vector2f(x * 32, y * 32), new IntRect(layer.X * 32, layer.Y * 32, 32, 32));
+                        for (int l = 0; l < (int)LayerType.Length; l++) {
+                            foreach (var layer in tile.Layer[l]) {
+                                if (layer.Tileset > -1) {
+                                    RenderSurface(_surface[(int)SurfaceType.Tileset][layer.Tileset], new Vector2f(x * Tile.TileSize, y * Tile.TileSize), new IntRect(layer.X * Tile.TileSize, layer.Y * Tile.TileSize, Tile.TileSize, Tile.TileSize));
+                                }
                             }
                         }
                     }

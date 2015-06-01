@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using MapEditor.IO;
 using MapEditor.Forms;
 using MapEditor.Data;
+using MapEditor.Data.Models.Maps;
 using MapEditor.Graphics;
 
 namespace MapEditor
@@ -15,6 +16,7 @@ namespace MapEditor
     {
         public static MapTreeWindow MapTreeWindow;
         public static TilesetWindow TilesetWindow;
+        public static LayerTreeWindow LayerTreeWindow;
         public static EditorWindow Window;
         public static Settings Settings;
 
@@ -29,9 +31,13 @@ namespace MapEditor
             System.Windows.Forms.Application.EnableVisualStyles();
 
             // Initialize the game form.
-            Window = new EditorWindow(30 * 32, 20 * 32);
+            Window = new EditorWindow(30 * Tile.TileSize, 20 * Tile.TileSize);
             TilesetWindow = new TilesetWindow();
             MapTreeWindow = new MapTreeWindow();
+            LayerTreeWindow = new LayerTreeWindow();
+
+            MapTreeWindow.Show();
+            MapTreeWindow.Hide();
 
             // Initialize the event-handlers and properties.
 
@@ -39,7 +45,7 @@ namespace MapEditor
             Window.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Window.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             Window.MaximizeBox = false;
-            Window.Text = "Map Editor";
+            Window.Text = "Editing: None";
             Window.FormClosing += (sender, e) => {
                 Editor.Running = false;
                 e.Cancel = true;

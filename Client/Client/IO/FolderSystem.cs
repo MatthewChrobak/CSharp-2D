@@ -1,16 +1,17 @@
 ﻿using System.IO;
 
-using Client.Graphics;
+using Client;
+using Graphics;
 
-namespace Client.IO
+namespace IO
 {
     public static class FolderSystem
     {
         public static void Check() {
             // Create an array of directories to check.
             string[] folders = {
-                                 Client.StartupPath + "data\\",
-                                 Client.StartupPath + "data\\fonts\\",
+                                 Application.StartupPath + "data\\",
+                                 Application.StartupPath + "data\\fonts\\",
                                  GraphicsManager.SurfacePath,
                                  GraphicsManager.ItemPath,
                                  GraphicsManager.TilesetPath,

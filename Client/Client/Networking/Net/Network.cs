@@ -4,9 +4,11 @@ using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
 
-namespace Client.Networking.Net
+using Client;
+
+namespace Networking.Net
 {
-    public class Network : iNetwork
+    public class Network : INetwork
     {
         private byte[] _buffer;
         private Socket _client;
@@ -22,7 +24,7 @@ namespace Client.Networking.Net
                 AddressFamily.InterNetwork,
                 SocketType.Stream,
                 ProtocolType.Tcp);
-            _client.BeginConnect(new IPEndPoint(IPAddress.Parse(Client.Settings.IP), Client.Settings.Port), new AsyncCallback(ConnectCallBack), null);
+            _client.BeginConnect(new IPEndPoint(IPAddress.Parse(Application.Settings.IP), Application.Settings.Port), new AsyncCallback(ConnectCallBack), null);
 
             while (!_connected) {
                 // waste time.
@@ -72,7 +74,7 @@ namespace Client.Networking.Net
                     if (_fileData.Count == _fileSize) {
                         _incomingFile = false;
                         _fileSize = 0;
-                        File.WriteAllBytes(Client.StartupPath + _file, _fileData.ToArray());
+                        File.WriteAllBytes(Application.StartupPath + _file, _fileData.ToArray());
                         _file = "";
                         _fileData = null;
                     }
