@@ -9,6 +9,6 @@ http://www.mediafire.com/download/fno2clkuyqu3ooo/2D_Multiplayer_Engine_Client.z
 
 http://www.mediafire.com/download/d25ee3u9y733p5k/2D_Multiplayer_Engine_Server.zip
 
-http://www.mediafire.com/download/r64bo299wutlelg/2D_Singeplayer_Engine.zip
+http://www.mediafire.com/download/3svtpd2sxl0vadg/2D_Singleplayer_Engine.zip
 
 Once Visual Studio is restarted, create a new project and select Visual C# selection in Templates. The templates should appear.
