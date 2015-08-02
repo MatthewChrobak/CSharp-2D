@@ -1,10 +1,12 @@
 ﻿namespace _2D_Multiplayer_Engine_Client.Networking {
     public static class NetworkManager {
         private static INetwork _network;
+        public static PacketManager PacketManager;
 
         public static void Initialize() {
+            PacketManager = new PacketManager();
             PacketManager.Initialize();
-            _network = new Networking.Net.Network();
+            _network = new Net.Network();
             _network.Initialize();
         }
 

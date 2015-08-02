@@ -3,16 +3,16 @@ using System;
 using System.Collections.Generic;
 
 namespace _2D_Multiplayer_Engine_Client.Networking {
-    public static class PacketManager {
+    public class PacketManager {
         private delegate void HandleDataMethod(byte[] array);
-        private static List<HandleDataMethod> _handleData;
+        private List<HandleDataMethod> _handleData;
 
-        public static void Initialize() {
+        public void Initialize() {
             // Add packet handlers in the same order as they appear
             // in the Packets enumeration in Packets.cs on the SERVER side.
             _handleData = new List<HandleDataMethod>();
         }
-        private static byte[] RemovePacketHead(byte[] array) {
+        private byte[] RemovePacketHead(byte[] array) {
             // If the size of the entire buffer is 8, all the packet contains is the head.
             // Packets like that are just initiation packets, and don't actually contin
             // other data. So, what we return won't be manipulated anyways. Return null.
@@ -31,7 +31,7 @@ namespace _2D_Multiplayer_Engine_Client.Networking {
             // Return it.
             return clippedArray;
         }
-        public static void HandlePacket(byte[] array) {
+        public void HandlePacket(byte[] array) {
             bool process = true;
             var packet = new DataBuffer(array);
 

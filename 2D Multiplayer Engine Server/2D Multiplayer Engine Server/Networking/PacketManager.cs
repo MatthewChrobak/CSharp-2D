@@ -5,15 +5,15 @@ using System.Collections.Generic;
 namespace _2D_Multiplayer_Engine_Server.Networking {
     public class PacketManager {
         private delegate void HandleData(int index, byte[] array);
-        private static List<HandleData> _handleData;
+        private List<HandleData> _handleData;
 
-        public static void Initialize() {
+        public void Initialize() {
             // Add packet handlers in the same order as they appear
             // in the Packets enumeration in Packets.cs on the CLIENT side.
             _handleData = new List<HandleData>();
         }
 
-        private static byte[] RemovePacketHead(byte[] array) {
+        private byte[] RemovePacketHead(byte[] array) {
             // If the size of the entire buffer is 8, all the packet contains is the head.
             // Packets like that are just initiation packets, and don't actually contain
             // any other data. What we return won't be manipulated anyways. Return null.
@@ -33,7 +33,7 @@ namespace _2D_Multiplayer_Engine_Server.Networking {
             return clippedArray;
         }
 
-        public static void HandlePacket(int index, byte[] array) {
+        public void HandlePacket(int index, byte[] array) {
             bool process = true;
             var packet = new DataBuffer(array);
 
