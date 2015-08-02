@@ -4,10 +4,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace _2D_Multiplayer_Engine_Server.Networking.Net
-{
-    public class Network : INetwork
-    {
+namespace _2D_Multiplayer_Engine_Server.Networking.Net {
+    public class Network : INetwork {
         private Socket _server;
         private List<Client> _client;
 
@@ -45,8 +43,7 @@ namespace _2D_Multiplayer_Engine_Server.Networking.Net
 
             try {
                 length = client.Socket.EndReceive(ar);
-            }
-            catch {
+            } catch {
                 client.Disconnect();
             }
 
@@ -109,7 +106,7 @@ namespace _2D_Multiplayer_Engine_Server.Networking.Net
             }
 
             client.IsReceiving = true;
-            client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), index);
+            client.Socket.BeginSend(array, 0, array.Length, SocketFlags.None, new AsyncCallback(SendCallBack), index);
         }
 
         public void SendDataToAll(byte[] array) {

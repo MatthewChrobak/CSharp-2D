@@ -1,7 +1,5 @@
-﻿namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml
-{
-    public class BackBuffer : System.Windows.Forms.Control
-    {
+﻿namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml {
+    public class BackBuffer : System.Windows.Forms.Control {
         public BackBuffer(System.Windows.Forms.Form form, int width, int height, int left, int top) {
             this.Left = left;
             this.Top = top;

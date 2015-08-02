@@ -1,9 +1,7 @@
 ﻿using System.Windows.Forms;
 
-namespace _2D_Multiplayer_Engine_Client.Forms
-{
-    public partial class GameWindow : Form
-    {
+namespace _2D_Multiplayer_Engine_Client.Forms {
+    public partial class GameWindow : Form {
         // Form constants.
         public int HorizontalFormWeight = 16;
         public int VerticalFormWeight = 38;

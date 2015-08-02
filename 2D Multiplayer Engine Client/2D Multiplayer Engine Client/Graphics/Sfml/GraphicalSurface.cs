@@ -2,10 +2,8 @@
 
 using SFML.Graphics;
 
-namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml
-{
-    public class GraphicalSurface
-    {
+namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml {
+    public class GraphicalSurface {
         public string tag { get; private set; }
         public Sprite sprite { get; private set; }
 

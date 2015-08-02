@@ -1,12 +1,9 @@
-﻿namespace _2D_Multiplayer_Engine_Client.Graphics
-{
-    public enum SurfaceType
-    {
+﻿namespace _2D_Multiplayer_Engine_Client.Graphics {
+    public enum SurfaceType {
         Length
     }
 
-    public class GraphicsManager
-    {
+    public class GraphicsManager {
         // Surface paths
         public static string SurfacePath = Program.StartupPath + "data\\surfaces\\";
         public static string GuiPath = SurfacePath + "Gui\\";

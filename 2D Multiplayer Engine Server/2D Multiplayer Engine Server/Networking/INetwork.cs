@@ -1,7 +1,5 @@
-﻿namespace _2D_Multiplayer_Engine_Server.Networking
-{
-    interface INetwork
-    {
+﻿namespace _2D_Multiplayer_Engine_Server.Networking {
+    interface INetwork {
         void Initialize();
         void Destroy();
         void SendDataTo(int index, byte[] array);

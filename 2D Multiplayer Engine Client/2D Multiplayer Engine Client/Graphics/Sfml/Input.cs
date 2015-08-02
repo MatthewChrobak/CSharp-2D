@@ -1,10 +1,8 @@
 ﻿using SFML.Window;
 using _2D_Multiplayer_Engine_Client;
 
-namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml
-{
-    public class Input : IInput
-    {
+namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml {
+    public class Input : IInput {
         public void MouseDown(object sender, object obj) {
             // Convert the object into a MouseButtonEventArgs object.
             var e = (MouseButtonEventArgs)obj;

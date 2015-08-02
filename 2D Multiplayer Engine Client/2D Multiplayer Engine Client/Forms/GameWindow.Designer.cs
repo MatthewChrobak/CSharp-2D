@@ -1,7 +1,5 @@
-﻿namespace _2D_Multiplayer_Engine_Client.Forms
-{
-    partial class GameWindow
-    {
+﻿namespace _2D_Multiplayer_Engine_Client.Forms {
+    partial class GameWindow {
         /// <summary>
         /// Required designer variable.
         /// </summary>

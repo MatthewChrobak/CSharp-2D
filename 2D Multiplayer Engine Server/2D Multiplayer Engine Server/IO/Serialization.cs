@@ -1,14 +1,12 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace _2D_Multiplayer_Engine_Server.IO
-{
-    public static class Serialization
-    {
-        public static object Deserialize<T>(string file, System.Type type) {
+namespace _2D_Multiplayer_Engine_Server.IO {
+    public static class Serialization {
+        public static T Deserialize<T>(string file, System.Type type) {
             // If the file does not exist, return null.
             if (!File.Exists(file)) {
-                return null;
+                return default(T);
             }
 
             var xml = new XmlSerializer(type);

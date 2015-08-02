@@ -4,10 +4,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace _2D_Multiplayer_Engine_Client.Networking.Net
-{
-    public class Network : INetwork
-    {
+namespace _2D_Multiplayer_Engine_Client.Networking.Net {
+    public class Network : INetwork {
         private byte[] _buffer;
         private Socket _client;
         private bool _connected;
@@ -31,8 +29,7 @@ namespace _2D_Multiplayer_Engine_Client.Networking.Net
         private void ConnectCallBack(IAsyncResult ar) {
             try {
                 _client.EndConnect(ar);
-            }
-            catch {
+            } catch {
                 Environment.Exit(1);
             }
 
@@ -45,8 +42,7 @@ namespace _2D_Multiplayer_Engine_Client.Networking.Net
 
             try {
                 length = _client.EndReceive(ar);
-            }
-            catch {
+            } catch {
                 Environment.Exit(1);
             }
 

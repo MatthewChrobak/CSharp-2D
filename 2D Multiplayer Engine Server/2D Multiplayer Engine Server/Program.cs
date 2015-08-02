@@ -3,10 +3,8 @@ using _2D_Multiplayer_Engine_Server.IO;
 using _2D_Multiplayer_Engine_Server.Networking;
 using System;
 
-namespace _2D_Multiplayer_Engine_Server
-{
-    public static class Program
-    {
+namespace _2D_Multiplayer_Engine_Server {
+    public static class Program {
         public static string StartupPath;
         public static bool Running;
 
@@ -23,7 +21,7 @@ namespace _2D_Multiplayer_Engine_Server
             // Start the network.
             NetworkManager.Initialize();
 
-            // Set up the Destroy Server event handlers.
+            // Set up the Destroy _2D_Multiplayer_Engine_Server event handlers.
             Console.WriteLine("[IMPORTANT INFORMATION] : ");
             Console.WriteLine("------------------------------------------------------------------------------");
             Console.WriteLine("Remember to turn off the server by pressing [CTRL + C] or [CTRL + BREAK].");

@@ -4,10 +4,8 @@ using System.IO;
 using _2D_Multiplayer_Engine_Client.Graphics.Sfml.Scenes.Objects;
 using _2D_Multiplayer_Engine_Client.Data;
 
-namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml.Scenes
-{
-    public class SceneSystem
-    {
+namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml.Scenes {
+    public class SceneSystem {
         public List<GraphicalSurface> Surface { private set; get; }
         private SceneObject[] _gameObjects;
         private SceneObject[] _menuObjects;

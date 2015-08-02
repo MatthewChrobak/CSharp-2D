@@ -2,10 +2,8 @@
 using SFML.Graphics;
 using System.Collections.Generic;
 
-namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml
-{
-    public class Sfml : IGraphics
-    {
+namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml {
+    public class Sfml : IGraphics {
         public static RenderWindow BackBuffer { private set; get; }
         public static SceneSystem Scene { private set; get; }
         public static Font GameFont { private set; get; }

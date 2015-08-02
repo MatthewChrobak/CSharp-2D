@@ -1,9 +1,7 @@
 ﻿using System.IO;
 
-namespace _2D_Multiplayer_Engine_Client.IO
-{
-    public class DataBuffer
-    {
+namespace _2D_Multiplayer_Engine_Client.IO {
+    public class DataBuffer {
         private MemoryStream _buffer;
         private BinaryReader _reader;
         private BinaryWriter _writer;
@@ -67,8 +65,7 @@ namespace _2D_Multiplayer_Engine_Client.IO
             }
             int value = _reader.ReadInt32();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -78,8 +75,7 @@ namespace _2D_Multiplayer_Engine_Client.IO
             }
             string value = _reader.ReadString();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -89,8 +85,7 @@ namespace _2D_Multiplayer_Engine_Client.IO
             }
             bool value = _reader.ReadBoolean();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -100,8 +95,7 @@ namespace _2D_Multiplayer_Engine_Client.IO
             }
             byte value = _reader.ReadByte();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -112,8 +106,7 @@ namespace _2D_Multiplayer_Engine_Client.IO
             int len = _reader.ReadInt32();
             byte[] value = _reader.ReadBytes(len);
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -124,8 +117,7 @@ namespace _2D_Multiplayer_Engine_Client.IO
                 File.Delete(file);
             }
             File.WriteAllBytes(file, _buffer.ToArray());
-            _writer.Dispose();
-            _buffer.Dispose();
+            Dispose();
         }
         public byte[] toArray() {
             var array = _buffer.ToArray();

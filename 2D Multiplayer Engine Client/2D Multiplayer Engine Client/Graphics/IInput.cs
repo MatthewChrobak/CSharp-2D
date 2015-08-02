@@ -1,7 +1,5 @@
-﻿namespace _2D_Multiplayer_Engine_Client.Graphics
-{
-    interface IInput
-    {
+﻿namespace _2D_Multiplayer_Engine_Client.Graphics {
+    interface IInput {
         void KeyPress(object arg1, object arg2);
         void KeyRelease(object arg1, object arg2);
 

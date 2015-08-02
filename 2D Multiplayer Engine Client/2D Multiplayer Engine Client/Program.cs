@@ -4,10 +4,8 @@ using _2D_Multiplayer_Engine_Client.Forms;
 using _2D_Multiplayer_Engine_Client.Graphics;
 using _2D_Multiplayer_Engine_Client.Networking;
 
-namespace _2D_Multiplayer_Engine_Client
-{
-    public static class Program
-    {
+namespace _2D_Multiplayer_Engine_Client {
+    public static class Program {
         // Public accessors
         public static GameWindow Window;
 

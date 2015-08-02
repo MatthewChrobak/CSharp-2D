@@ -1,10 +1,8 @@
 ﻿using SFML.System;
 using SFML.Graphics;
 
-namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml.Scenes
-{
-    public abstract class SceneObject
-    {
+namespace _2D_Multiplayer_Engine_Client.Graphics.Sfml.Scenes {
+    public abstract class SceneObject {
         private static double CapsToLowerRatio = 0.8;
         private static double CapsToSize = 0.6153846153846154; // 16/26
         private static double LowerToSize = 0.5; // 13/26

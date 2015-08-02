@@ -1,9 +1,7 @@
 ﻿using System.IO;
 
-namespace _2D_Multiplayer_Engine_Server.IO
-{
-    public class DataBuffer
-    {
+namespace _2D_Multiplayer_Engine_Server.IO {
+    public class DataBuffer {
         private MemoryStream _buffer;
         private BinaryReader _reader;
         private BinaryWriter _writer;
@@ -67,8 +65,7 @@ namespace _2D_Multiplayer_Engine_Server.IO
             }
             int value = _reader.ReadInt32();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -78,8 +75,7 @@ namespace _2D_Multiplayer_Engine_Server.IO
             }
             string value = _reader.ReadString();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -89,8 +85,7 @@ namespace _2D_Multiplayer_Engine_Server.IO
             }
             bool value = _reader.ReadBoolean();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -100,8 +95,7 @@ namespace _2D_Multiplayer_Engine_Server.IO
             }
             byte value = _reader.ReadByte();
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -112,8 +106,7 @@ namespace _2D_Multiplayer_Engine_Server.IO
             int len = _reader.ReadInt32();
             byte[] value = _reader.ReadBytes(len);
             if (_buffer.Position == _buffer.Length) {
-                _reader.Dispose();
-                _buffer.Dispose();
+                Dispose();
             }
             return value;
         }
@@ -124,11 +117,13 @@ namespace _2D_Multiplayer_Engine_Server.IO
                 File.Delete(file);
             }
             File.WriteAllBytes(file, _buffer.ToArray());
-            _writer.Dispose();
-            _buffer.Dispose();
+            Dispose();
         }
-        public byte[] toArray() {
+        public byte[] toArray(bool dispose = false) {
             var array = _buffer.ToArray();
+            if (dispose) {
+                Dispose();
+            }
             return array;
         }
         public byte[] toNetworkArray() {
@@ -138,6 +133,7 @@ namespace _2D_Multiplayer_Engine_Server.IO
                 using (BinaryWriter writer = new BinaryWriter(memory)) {
                     writer.Write(length + 4);
                     writer.Write(_buffer.ToArray());
+                    Dispose();
                     return memory.ToArray();
                 }
             }

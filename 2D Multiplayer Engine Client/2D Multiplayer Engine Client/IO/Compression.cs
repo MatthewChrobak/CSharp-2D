@@ -1,10 +1,8 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace _2D_Multiplayer_Engine_Client.IO
-{
-    public static class Compression
-    {
+namespace _2D_Multiplayer_Engine_Client.IO {
+    public static class Compression {
         public static void CompressDirectory(string directory, string file) {
             // Check if the directory exists.
             if (Directory.Exists(directory)) {

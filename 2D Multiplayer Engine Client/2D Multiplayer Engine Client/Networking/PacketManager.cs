@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace _2D_Multiplayer_Engine_Client.Networking
-{
-    public static class PacketManager
-    {
+namespace _2D_Multiplayer_Engine_Client.Networking {
+    public static class PacketManager {
         private delegate void HandleDataMethod(byte[] array);
         private static List<HandleDataMethod> _handleData;
 

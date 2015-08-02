@@ -1,9 +1,7 @@
 ﻿using System.IO;
 
-namespace _2D_Multiplayer_Engine_Server.IO
-{
-    public static class FolderSystem
-    {
+namespace _2D_Multiplayer_Engine_Server.IO {
+    public static class FolderSystem {
         public static void Check() {
             // Create an array of directories to check.
             string[] folders = {

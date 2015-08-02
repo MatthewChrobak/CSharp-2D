@@ -1,7 +1,5 @@
-﻿namespace _2D_Multiplayer_Engine_Client.Networking
-{
-    public static class NetworkManager
-    {
+﻿namespace _2D_Multiplayer_Engine_Client.Networking {
+    public static class NetworkManager {
         private static INetwork _network;
 
         public static void Initialize() {

@@ -1,9 +1,7 @@
 ﻿using System.Net.Sockets;
 
-namespace _2D_Multiplayer_Engine_Server.Networking.Net
-{
-    public class Client
-    {
+namespace _2D_Multiplayer_Engine_Server.Networking.Net {
+    public class Client {
         public Socket Socket;
         public byte[] Buffer;
         public bool IsReceiving;
