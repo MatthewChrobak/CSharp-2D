@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="sfmlnet-audio-2">
+      <HintPath>..\..\..\..\..\Copy\Programming\C#\SFML\2.2\32 Bit\lib\sfmlnet-audio-2.dll</HintPath>
+    </Reference>
     <Reference Include="sfmlnet-graphics-2">
       <HintPath>..\..\..\..\..\Copy\Programming\C#\SFML\2.2\32 Bit\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
@@ -53,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Audio\IPlayer.cs" />
+    <Compile Include="Audio\Sfml\AudioPlayer.cs" />
+    <Compile Include="Audio\Sfml\AudioFlags.cs" />
+    <Compile Include="Audio\Sfml\PlayingMusic.cs" />
+    <Compile Include="Audio\Sfml\PlayingSound.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Forms\GameWindow.cs">
       <SubType>Form</SubType>
@@ -60,6 +69,8 @@
     <Compile Include="Forms\GameWindow.Designer.cs">
       <DependentUpon>GameWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="GameFlags.cs" />
+    <Compile Include="GameStates.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="Graphics\IInput.cs" />
@@ -75,7 +86,9 @@
     <Compile Include="Graphics\Sfml\Scenes\Objects\Textbox.cs" />
     <Compile Include="Graphics\Sfml\Scenes\SceneObject.cs" />
     <Compile Include="Graphics\Sfml\Scenes\SceneSystem.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\ZOrder.cs" />
     <Compile Include="Graphics\Sfml\Sfml.cs" />
+    <Compile Include="Graphics\SurfaceTypes.cs" />
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\DataBuffer.cs" />
     <Compile Include="IO\FolderSystem.cs" />
@@ -92,6 +105,9 @@
     <Folder Include="Data\Models\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="csfml-audio-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="csfml-graphics-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

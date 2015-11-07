@@ -1,15 +1,20 @@
-﻿namespace _2D_Singleplayer_Engine.Graphics.Sfml {
-    public class BackBuffer : System.Windows.Forms.Control {
+﻿namespace _2D_Singleplayer_Engine.Graphics.Sfml
+{
+    public class BackBuffer : System.Windows.Forms.Control
+    {
         public BackBuffer(System.Windows.Forms.Form form, int width, int height, int left, int top) {
+            // Resize the object based off of the arguments passed.
             this.Left = left;
             this.Top = top;
             this.Height = height;
             this.Width = width;
 
+            // Add this object to the form specified.
             form.Controls.Add(this);
         }
 
         public System.IntPtr GetHandle() {
+            // Return this object's handle.
             return this.Handle;
         }
 

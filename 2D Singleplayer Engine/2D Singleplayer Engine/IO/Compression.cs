@@ -1,8 +1,10 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace _2D_Singleplayer_Engine.IO {
-    public static class Compression {
+namespace _2D_Singleplayer_Engine.IO
+{
+    public static class Compression
+    {
         public static void CompressDirectory(string directory, string file) {
             // Check if the directory exists.
             if (Directory.Exists(directory)) {
@@ -40,7 +42,7 @@ namespace _2D_Singleplayer_Engine.IO {
             }
         }
 
-        public static void DecompressFile(string file, byte[] array) {
+        public static void DecompressFile(string file, byte[] array, bool delete = false) {
 
             // Take our byte array and make it a file.
             File.WriteAllBytes(file + ".zip", array);
@@ -56,11 +58,8 @@ namespace _2D_Singleplayer_Engine.IO {
                     }
                 }
             }
-        }
 
-        public static void DecompressFile(string file, byte[] array, bool delete) {
-            DecompressFile(file, array);
-
+            // Unless instructed otherwise, don't delete the original file.
             if (delete) {
                 File.Delete(file);
             }

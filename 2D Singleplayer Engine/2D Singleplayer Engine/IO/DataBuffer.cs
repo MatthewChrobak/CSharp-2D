@@ -1,125 +1,232 @@
 ﻿using System.IO;
 
-namespace _2D_Singleplayer_Engine.IO {
-    public class DataBuffer {
+namespace _2D_Singleplayer_Engine.IO
+{
+    public class DataBuffer
+    {
+        // Class objects used to read and write data.
         private MemoryStream _buffer;
         private BinaryReader _reader;
         private BinaryWriter _writer;
 
-        // Constructors that initialize the memorystream
-        // and either the writer or reader.
+        // Constructors that, depending on the arguments,
+        // initialize the memorystream and either the binarywriter or binaryreader.
         public DataBuffer() {
-            _buffer = new MemoryStream();
-            _writer = new BinaryWriter(_buffer);
+            // Initialize a clean memorystream and initialize the
+            // writer to write to that memorystream.
+            this._buffer = new MemoryStream();
+            this._writer = new BinaryWriter(this._buffer);
         }
         public DataBuffer(string file) {
+            // Make sure that the file actually exists.
             if (!File.Exists(file)) {
                 return;
             }
-            _buffer = new MemoryStream(File.ReadAllBytes(file));
-            _reader = new BinaryReader(_buffer);
+            // Load the memorystream with the bytes from the file, and set
+            // the reader to read from that memorystream.
+            this._buffer = new MemoryStream(File.ReadAllBytes(file));
+            this._reader = new BinaryReader(this._buffer);
         }
         public DataBuffer(byte[] array) {
-            _buffer = new MemoryStream(array);
-            _reader = new BinaryReader(_buffer);
+            // Load the memorystream with the given bytes, and set
+            // the reader to read from that memorystream.
+            this._buffer = new MemoryStream(array);
+            this._reader = new BinaryReader(this._buffer);
         }
 
-        // Manual disposing of the objects.
-        public void Dispose() {
-            if (_reader != null) {
-                _reader.Dispose();
-            }
-            if (_writer != null) {
-                _writer.Dispose();
-            }
-            if (_buffer != null) {
-                _buffer.Dispose();
-            }
+        // A deconstructor to ensure that the class objects are
+        // properly disposed of.
+        ~DataBuffer() {
+            this.Dispose();
         }
 
-        // Methods that write to the buffer.
+        // Methods used to write to memory.
         public void Write(int value) {
-            _writer.Write(value);
+            // Make sure that we can actually write to memory.
+            if (this._writer != null && this._writer.BaseStream.CanWrite) {
+                this._writer.Write(value);
+            }
         }
         public void Write(string value) {
-            _writer.Write(value);
+            // Make sure that we can actually write to memory.
+            if (this._writer != null && this._writer.BaseStream.CanWrite) {
+                this._writer.Write(value);
+            }
         }
         public void Write(bool value) {
-            _writer.Write(value);
+            // Make sure that we can actually write to memory.
+            if (this._writer != null && this._writer.BaseStream.CanWrite) {
+                this._writer.Write(value);
+            }
         }
         public void Write(byte value) {
-            _writer.Write(value);
+            // Make sure that we can actually write to memory.
+            if (this._writer != null && this._writer.BaseStream.CanWrite) {
+                this._writer.Write(value);
+            }
         }
         public void Write(byte[] value) {
-            _writer.Write(value.Length);
-            _writer.Write(value);
+            // Make sure that we can actually write to memory.
+            if (this._writer != null && this._writer.BaseStream.CanWrite) {
+                // Write the length to memory before the actual array
+                // so when we read the data, we know how big the array is.
+                this._writer.Write(value.Length);
+                this._writer.Write(value);
+            }
         }
 
-        // Methods that read from the buffer.
+        // Methods used to read from memory.
         public int ReadInt() {
-            if (_reader == null) {
+            // Make sure that we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader == null || this._reader.BaseStream.CanRead) {
                 return 0;
             }
-            int value = _reader.ReadInt32();
-            if (_buffer.Position == _buffer.Length) {
-                Dispose();
+
+            // Read and store the value.
+            int value = this._reader.ReadInt32();
+
+            // Check to see if we read to the end of the stream.
+            // If so, dispose.
+            if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                this.Dispose();
             }
+
+            // Return what we stored.
             return value;
         }
         public string ReadString() {
-            if (_reader == null) {
+            // Make sure that we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader == null || this._reader.BaseStream.CanRead) {
                 return "";
             }
-            string value = _reader.ReadString();
-            if (_buffer.Position == _buffer.Length) {
-                Dispose();
+
+            // Read and store the value.
+            string value = this._reader.ReadString();
+
+            // Check to see if we read to the end of the stream.
+            // If so, dispose.
+            if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                this.Dispose();
             }
+
+            // Return what we stored.
             return value;
         }
         public bool ReadBool() {
-            if (_reader == null) {
+            // Make sure that we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader == null || this._reader.BaseStream.CanRead) {
                 return false;
             }
-            bool value = _reader.ReadBoolean();
-            if (_buffer.Position == _buffer.Length) {
-                Dispose();
+
+            // Read and store the value.
+            bool value = this._reader.ReadBoolean();
+
+            // Check to see if we read to the end of the stream.
+            // If so, dispose.
+            if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                this.Dispose();
             }
+
+            // Return what we stored.
             return value;
         }
         public byte ReadByte() {
-            if (_reader == null) {
+            // Make sure that we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader == null || this._reader.BaseStream.CanRead) {
                 return 0;
             }
-            byte value = _reader.ReadByte();
-            if (_buffer.Position == _buffer.Length) {
-                Dispose();
+
+            // Read and store the value.
+            byte value = this._reader.ReadByte();
+
+            // Check to see if we read to the end of the stream.
+            // If so, dispose.
+            if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                this.Dispose();
             }
+
+            // Return what we stored.
             return value;
         }
         public byte[] ReadBytes() {
-            if (_reader == null) {
-                return new byte[] { 0 };
+            // Make sure that we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader == null || this._reader.BaseStream.CanRead) {
+                return new byte[0];
             }
-            int len = _reader.ReadInt32();
-            byte[] value = _reader.ReadBytes(len);
-            if (_buffer.Position == _buffer.Length) {
-                Dispose();
+
+            // Read the length of the upcoming byte array, and
+            // read that many bytes.
+            int len = this._reader.ReadInt32();
+            byte[] value = this._reader.ReadBytes(len);
+
+            // Check to see if we read to the end of the stream.
+            // If so, dispose.
+            if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                this.Dispose();
             }
+
+            // Return what we stored.
             return value;
         }
 
-        // Saving gamefiles.
-        public void Save(string file) {
-            if (File.Exists(file)) {
-                File.Delete(file);
+        // Other utility methods.
+        public void Save(string filepath, bool dispose = true) {
+
+            // Check to see if a file of the same name
+            // exists. If so, delete it.
+            if (File.Exists(filepath)) {
+                File.Delete(filepath);
             }
-            File.WriteAllBytes(file, _buffer.ToArray());
-            Dispose();
+
+            // Make sure that we can read from the stream.
+            if (this._buffer != null && this._buffer.CanRead) {
+
+                // Write all the bytes in the buffer to the specified filepath.
+                File.WriteAllBytes(filepath, this._buffer.ToArray());
+
+                // Unless instructed otherwise, dispose afterwards.
+                if (dispose) {
+                    this.Dispose();
+                }
+            }
         }
-        public byte[] toArray() {
-            var array = _buffer.ToArray();
-            Dispose();
-            return array;
+        public byte[] ToArray(bool dispose = true) {
+
+            // Make sure that we can read from the stream.
+            if (this._buffer != null && this._buffer.CanRead) {
+
+                // Store the byte array.
+                var array = this._buffer.ToArray();
+
+                // Unless instructed otherwise, dispose afterwards.
+                if (dispose) {
+                    this.Dispose();
+                }
+
+                // Return the array.
+                return array;
+            }
+            // If we cannot read from the stream, return 
+            // an empty byte array.
+            return new byte[0];
         }
+        public void Dispose() {
+            // Dispose of any of the objects if they are not null.
+            if (this._reader != null) {
+                this._reader.Dispose();
+            }
+            if (this._writer != null) {
+                this._writer.Dispose();
+            }
+            if (this._buffer != null) {
+                this._buffer.Dispose();
+            }
+        }
+
     }
 }

@@ -1,20 +1,17 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 
-namespace _2D_Singleplayer_Engine.Graphics.Sfml.Scenes.Objects {
-    public class Label : SceneObject {
+namespace _2D_Singleplayer_Engine.Graphics.Sfml.Scenes.Objects
+{
+    public class Label : SceneObject
+    {
         public string Caption;
         public Color TextColor;
         public uint FontSize;
 
         public override void Draw() {
-            if (Caption != null) {
-                var text = new Text(Caption, Sfml.GameFont);
-                text.Position = new Vector2f(this.Left + (int)(this.Width - (this.Caption.Length * GetRatio(Caption) * this.FontSize)) / 2, this.Top + (this.Height / 2) - (this.FontSize / 2));
-                text.Color = this.TextColor;
-                text.CharacterSize = this.FontSize;
-                Sfml.BackBuffer.Draw(text);
-            }
+            // Draw the caption for the label.
+            base.RenderCaption(this.Caption, this.FontSize, this.TextColor);
         }
     }
 }
