@@ -1,3 +1,8 @@
+# WARNING - This project is currently being re-written
+The source code for the multiplayer engine was taken down, and the re-written singleplayer engine was uploaded.
+The singleplayer engine is currently undertaking tests to test the stability of its components. Only when the tests have been finished will the multiplayer engine be re-written. 
+The download links for the templates of the previous versions were left just in case.
+
 # CSharp-Game-Engine-Framework
 A free open source 2D game engine framework made using C#.
 
