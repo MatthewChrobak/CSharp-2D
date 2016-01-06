@@ -1,4 +1,3 @@
-*.dll
 *.suo
 *.txt
 **bin/
