@@ -7,7 +7,7 @@ namespace Game.IO
     {
         public static void CompressDirectory(string directory, string zipfile) {
             // Make sure the directory exists before compressing.
-            if (Directory.Exists(directory)) { 
+            if (Directory.Exists(directory)) {
                 ZipFile.CreateFromDirectory(directory, zipfile, CompressionLevel.Optimal, false);
             } else {
                 // If it does not exist, throw an excetion.
@@ -44,18 +44,20 @@ namespace Game.IO
             }
         }
 
-        public static void DecompresBytes(string file, byte[] array, bool delete = false) {
-            // take our byte array and make it a file.
-            File.WriteAllBytes(file + ".zip", array);
+        public static void DecompressFile(string file, bool delete = false) {
+            // Make sure the file exists and that it's a zip file.
+            if (!File.Exists(file) ||  !file.EndsWith(".zip")) {
+                throw new FileNotFoundException("Compression: " + file);
+            } 
 
             // Open the filestream of the file we want to decompress.
-            using (var ofs = new FileInfo(file + ".zip").OpenRead()) {
-                // Create a new filestream with the .zip file extention.
-                using (var fs = new FileStream(file + ".zip", FileMode.OpenOrCreate)) {
-                    // Create a new filestream as a gZip stream.
-                    using (var gzs = new GZipStream(fs, CompressionMode.Decompress)) {
-                        // Copy our original filestream into the new gZip stream
-                        ofs.CopyTo(gzs);
+            using (var ofs = new FileInfo(file).OpenRead()) {
+                // Create a new filestream without the .zip file extention.
+                using (var fs = new FileStream(file.Remove(file.Length - 4), FileMode.OpenOrCreate)) {
+                    // Create a GZipStream which decompresses the original filestream.
+                    using (var gzs = new GZipStream(ofs, CompressionMode.Decompress)) {
+                        // Copy our decompressed filestream into the new filestream.
+                        gzs.CopyTo(fs);
                     }
                 }
             }

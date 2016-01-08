@@ -50,7 +50,7 @@ namespace Game.Graphics.Sfml.Scenes.Objects
 
         public override void KeyDown(string key) {
             switch (key) {
-                case "back":
+                case "backspace":
                     // If the backspace button is pressed when this object has the focus, then
                     // remove the last character from the textbox's text.
                     if (this.Text.Length != 0) {

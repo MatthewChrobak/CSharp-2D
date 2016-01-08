@@ -73,6 +73,12 @@ namespace Game.Graphics.Sfml.Scenes
         }
 
         public void RenderCaption(string value, uint fontsize, Color textcolor) {
+
+            // Make sure the text is not null.
+            if (value == null) {
+                return;
+            }
+
             // Create a new SFML text object.
             var text = new Text(value, (Font)GraphicsManager.Graphics.GetFont());
 

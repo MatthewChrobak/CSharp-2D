@@ -1,10 +1,13 @@
-# WARNING - This project is currently being re-written
-The source code for the multiplayer engine was taken down, and the re-written singleplayer engine was uploaded.
-The singleplayer engine is currently undertaking tests to test the stability of its components. Only when the tests have been finished will the multiplayer engine be re-written. 
-The download links for the templates of the previous versions were left just in case.
-
 # CSharp-Game-Engine-Framework
 A free open source 2D game engine framework made using C#.
+
+# Warning - The multiplayer engine is currently being re-written
+The source code for the multiplayer engine was taken down, and the re-written singleplayer engine was uploaded.
+Testing on the singleplayer engine is finished, and development has begun on the multiplayer engine.
+The project templates on mediafire are still the previous versions. 
+
+
+THESE TEMPLATES ARE OUTDATED
 
 To use these project templates, place the zipped files inside your Custom Project Templates folder and restart Visual Studio.
 The 2013 Custom Project Template directory can be found in Documents under 

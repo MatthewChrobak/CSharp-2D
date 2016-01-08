@@ -59,6 +59,13 @@ namespace Game.IO
             }
         }
 
+        public void Write(char value) {
+            // Make sure that we can actually write to memory.
+            if (this._writer?.BaseStream?.CanWrite == true) {
+                this._writer.Write(value);
+            }
+        }
+
         public void Write(bool value) {
             // Make sure that we can actually write to memory.
             if (this._writer?.BaseStream?.CanWrite == true) {
@@ -138,6 +145,27 @@ namespace Game.IO
                 return value;
             } else {
                 return "";
+            }
+        }
+
+        public char ReadChar() {
+            // Make sure we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader?.BaseStream?.CanRead == true) {
+
+                // Read and store the value.
+                char value = this._reader.ReadChar();
+
+                // Check to see if we read to the end of the stream.
+                // If so, dispose.
+                if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                    this.Dispose();
+                }
+
+                // Return what we stored.
+                return value;
+            } else {
+                return ' ';
             }
         }
 
@@ -232,6 +260,46 @@ namespace Game.IO
 
                 // Read and store the value.
                 long value = this._reader.ReadInt64();
+
+                // Check to see if we read to the end of the stream.
+                // If so, dispose.
+                if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                    this.Dispose();
+                }
+
+                // Return what we stored.
+                return value;
+            } else {
+                return 0;
+            }
+        }
+        public float ReadFloat() {
+            // Make sure we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader?.BaseStream?.CanRead == true) {
+
+                // Read and store the value.
+                float value = this._reader.ReadSingle();
+
+                // Check to see if we read to the end of the stream.
+                // If so, dispose.
+                if (this._reader.BaseStream.Position == this._reader.BaseStream.Length) {
+                    this.Dispose();
+                }
+
+                // Return what we stored.
+                return value;
+            } else {
+                return 0;
+            }
+        }
+        public double ReadDouble() {
+            // Make sure we can actually read from the stream.
+            // If not, return a default value.
+            if (this._reader?.BaseStream?.CanRead == true) {
+
+                // Read and store the value.
+                double value = this._reader.ReadDouble();
 
                 // Check to see if we read to the end of the stream.
                 // If so, dispose.

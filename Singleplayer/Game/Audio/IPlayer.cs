@@ -2,8 +2,8 @@
 {
     public interface IPlayer
     {
-        void PlaySound(string name, bool loop, float volume);
-        void PlayMusic(string name, bool loop, float volume);
+        void PlaySound(string name, bool loop = false, float volume = 100.0f);
+        void PlayMusic(string name, bool loop = false, float volume = 100.0f);
 
         void StopSoundsByName(string name);
         void StopMusicsByName(string name);

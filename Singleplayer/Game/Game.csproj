@@ -72,7 +72,6 @@
     <Compile Include="GameFlags.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
-    <Compile Include="Graphics\IEvents.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="Graphics\ISystem.cs" />
     <Compile Include="Graphics\Sfml\GraphicalSurface.cs" />

@@ -9,6 +9,9 @@ namespace Game.Graphics.Sfml.Scenes.Objects
         public uint FontSize;
 
         public override void Draw() {
+            // Draw the surface if we have one.
+            base.Draw();
+
             // Draw the caption for the label.
             base.RenderCaption(this.Caption, this.FontSize, this.TextColor);
         }

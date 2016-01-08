@@ -1,6 +1,6 @@
 ﻿namespace Game.Graphics
 {
-    public interface IScenes : ISystem, IEvents
+    public interface IScenes : ISystem
     {
         void MouseDown(string button, int x, int y);
         void MouseUp(string button, int x, int y);

@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.Window;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Game.Graphics.Sfml
 {
@@ -96,7 +97,17 @@ namespace Game.Graphics.Sfml
         }
 
         private void LoadFont() {
+            // Return early because a default tff file is not included.
+            return;
 
+            string fontFile = GraphicsManager.FontPath + "font.ttf";
+
+            // Make sure that the ttf file exists.
+            if (File.Exists(fontFile)) {
+                this.GameFont = new Font(fontFile);
+            } else {
+                throw new FileNotFoundException("Sfml: " + fontFile);
+            }
         }
 
         public void Draw() {
@@ -116,10 +127,15 @@ namespace Game.Graphics.Sfml
             this.DrawingSurface.Display();
         }
 
-        public void DrawObject(object surface) {
+        public void DrawObject(object obj) {
             // Convert the given object to an SFML drawable object, and 
             // have the drawing surface render it.
-            this.DrawingSurface.Draw((Drawable)surface);
+            var surface = (Drawable)obj;
+            this.DrawingSurface.Draw(surface);
+        }
+
+        public object GetFont() {
+            return this.GameFont;
         }
 
         private string FilterKey(KeyEventArgs e) {
@@ -139,7 +155,7 @@ namespace Game.Graphics.Sfml
                     case "space":
                         key = " ";
                         break;
-                    case "back":
+                    case "backspace":
                         // Just keep it as it is.
                         break;
                     default:
@@ -149,15 +165,15 @@ namespace Game.Graphics.Sfml
             }
 
             // Return the filtered key.
-            return key;
+            return key.ToLower();
         }
 
-        private GraphicalSurface GetSurface(string tagName, SurfaceTypes type) {
+        private Sprite GetSurface(string tagName, SurfaceTypes type) {
             // Loop through the collection of the specified type.
             for (int i = 0; i < this._surface[(int)type].Count; i++) {
                 // If the surface tag name is equal to the tag name specified, return the surface.
                 if (this._surface[(int)type][i].Tag == tagName.ToLower()) {
-                    return this._surface[(int)type][i];
+                    return this._surface[(int)type][i].Sprite;
                 } 
             }
 
@@ -181,10 +197,6 @@ namespace Game.Graphics.Sfml
 
         private void DrawGame() {
             // All logic pertaining to drawing the game goes here.
-        }
-
-        public object GetFont() {
-            return this.GameFont;
         }
     }
 }

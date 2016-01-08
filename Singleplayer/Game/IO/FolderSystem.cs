@@ -17,6 +17,7 @@ namespace Game.IO
                 // Directories needed for graphics.
                 GraphicsManager.SurfacePath,
                 GraphicsManager.GuiPath,
+                GraphicsManager.FontPath,
 
                 // Directories needed for music.
                 AudioManager.AudioDir,
