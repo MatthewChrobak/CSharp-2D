@@ -6,11 +6,11 @@ using System;
 
 namespace Game
 {
-    public static class Program
+    public static class Game
     {
         // Global variables related to the game.
         public static readonly string StartupPath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly string DataPath = Program.StartupPath + "data\\";
+        public static readonly string DataPath = Game.StartupPath + "data\\";
         public static GameState State { private set; get; }
         public static GameFlag Flag { private set; get; }
 
@@ -30,18 +30,18 @@ namespace Game
             GraphicsManager.Initialize();
 
             // Start the game-loop.
-            Program.GameLoop();
+            Game.GameLoop();
         }
 
         private static void GameLoop() {
             int tick = 0, tick16 = 0;
 
             // Mark the game as running, and show the main window.
-            Program.Flag = GameFlag.Running;
+            Game.Flag = GameFlag.Running;
 
             // Continue to run the game-loop as long as our game
             // is not closing.
-            while (Program.Flag != GameFlag.Closing) {
+            while (Game.Flag != GameFlag.Closing) {
                 tick = Environment.TickCount;
 
                 // Render graphics up to 60 times a second.
@@ -52,13 +52,13 @@ namespace Game
             }
 
             // The game will only be destroyed when the flag is set to closing.
-            Program.Destroy();
+            Game.Destroy();
         }
 
         public static void SetGameState(GameState state) {
             switch (state) {
                 case GameState.MainMenu:
-                    Program.State = state;
+                    Game.State = state;
                     break;
                 default:
                     return;
@@ -67,17 +67,17 @@ namespace Game
 
         public static void SetGameFlag(GameFlag flag) {
             // Make sure we can't change the flag if we're already closing.
-            if (Program.Flag == GameFlag.Closing) {
+            if (Game.Flag == GameFlag.Closing) {
                 return;
             }
 
-            Program.Flag = flag;
+            Game.Flag = flag;
         }
 
         private static void Destroy() {
             // Make sure that the game-loop has stopped, and
             // that we didn't call this on accident.
-            if (Program.Flag != GameFlag.Closing) {
+            if (Game.Flag != GameFlag.Closing) {
                 return;
             }
 

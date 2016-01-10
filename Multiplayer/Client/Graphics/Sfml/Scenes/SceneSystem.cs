@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace Game.Graphics.Sfml.Scenes
+namespace Client.Graphics.Sfml.Scenes
 {
     public class SceneSystem : IScenes
     {
@@ -23,8 +23,8 @@ namespace Game.Graphics.Sfml.Scenes
 
         public SceneSystem() {
             // Create an array of collections containing scene objects for 
-            // every game state.
-            this._UIObject = new List<SceneObject>[(int)GameState.Length];
+            // every client state.
+            this._UIObject = new List<SceneObject>[(int)ClientState.Length];
             for (int i = 0; i < this._UIObject.Length; i++) {
                 this._UIObject[i] = new List<SceneObject>();
             }
@@ -64,11 +64,11 @@ namespace Game.Graphics.Sfml.Scenes
             // Make sure that we actually initialized the scene system.
             if (this._UIObject != null) {
                 // Make sure that we actually have scene objects in our current state.
-                if (this._UIObject[(int)Game.State] != null) {
+                if (this._UIObject[(int)Client.State] != null) {
                     // Loop through all possible values for the ZOrder.
                     for (int z = ZOrder.GetHighZ(); z >= 0; z--) {
                         // Loop through every scene object we have in our current state.
-                        foreach (var obj in this._UIObject[(int)Game.State]) {
+                        foreach (var obj in this._UIObject[(int)Client.State]) {
                             // Does the object's ZIndex match the ZOrder?
                             if (obj.Z == z) {
                                 // Is the object visible?
@@ -136,11 +136,11 @@ namespace Game.Graphics.Sfml.Scenes
             // Make sure that the scene system has actually been initialized.
             if (this._UIObject != null) {
                 // Make sure that we actually have scene objects in our current state.
-                if (this._UIObject[(int)Game.State] != null) {
+                if (this._UIObject[(int)Client.State] != null) {
                     // Loop through every possible ZOrder value.
                     for (int z = ZOrder.GetHighZ(); z >= 0; z--) {
                         // Loop through all the scene objects in our current state.
-                        foreach (var obj in this._UIObject[(int)Game.State]) {
+                        foreach (var obj in this._UIObject[(int)Client.State]) {
                             // Does the ZIndex match the ZOrder?
                             if (obj.Z == z) {
                                 // Make sure that the object is visible.
@@ -201,9 +201,9 @@ namespace Game.Graphics.Sfml.Scenes
             // Make sure that we've actually loaded the scene system.
             if (this._UIObject != null) {
                 // Make sure we actually have scene objects in our current state.
-                if (this._UIObject[(int)Game.State] != null) {
+                if (this._UIObject[(int)Client.State] != null) {
                     // Draw every object in this scene if it's visible.
-                    foreach (var obj in this._UIObject[(int)Game.State]) {
+                    foreach (var obj in this._UIObject[(int)Client.State]) {
                         if (obj.Visible) {
                             obj.Draw();
                         }
@@ -228,9 +228,9 @@ namespace Game.Graphics.Sfml.Scenes
             // Make sure that we actually initialized the scene system.
             if (this._UIObject != null) {
                 // Make sure we actually have scene objects in our current state.
-                if (this._UIObject[(int)Game.State] != null) {
+                if (this._UIObject[(int)Client.State] != null) {
                     // Loop through all the scene objects in our current state.
-                    foreach (var obj in this._UIObject[(int)Game.State]) {
+                    foreach (var obj in this._UIObject[(int)Client.State]) {
                         // If the object has the same name as the one specified, return it.
                         if (obj.Name == name.ToLower()) {
                             return obj;

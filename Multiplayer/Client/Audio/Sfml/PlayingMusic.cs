@@ -1,6 +1,6 @@
 ﻿using SFML.Audio;
 
-namespace Game.Audio.Sfml
+namespace Client.Audio.Sfml
 {
     public class PlayingMusic
     {

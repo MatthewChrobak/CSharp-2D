@@ -1,10 +1,10 @@
-﻿using Game.Graphics.Sfml.Scenes;
+﻿using Client.Graphics.Sfml.Scenes;
 using SFML.Graphics;
 using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Game.Graphics.Sfml
+namespace Client.Graphics.Sfml
 {
     public class Sfml : IGraphics
     {
@@ -77,10 +77,10 @@ namespace Game.Graphics.Sfml
                 this.SceneSystem.KeyDown(this.FilterKey(e));
             };
 
-            // When the close button is pressed, set the game flag to 'closing' so 
+            // When the close button is pressed, set the client flag to 'closing' so 
             // the application can begin to close.
             this.DrawingSurface.Closed += (sender, e) => {
-                Game.SetGameFlag(GameFlag.Closing);
+                Client.SetClientFlag(ClientFlag.Closing);
             };
         }
 

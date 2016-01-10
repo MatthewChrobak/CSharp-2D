@@ -1,8 +1,8 @@
-﻿using Game.Audio;
-using Game.Graphics;
+﻿using Client.Audio;
+using Client.Graphics;
 using System.IO;
 
-namespace Game.IO
+namespace Client.IO
 {
     public static class FolderSystem
     {
@@ -10,7 +10,7 @@ namespace Game.IO
             // Create an array of directories to check.
             string[] folders = {
                 // General program directories.
-                Game.DataPath,
+                Client.DataPath,
 
                 // Directories needed for data.
 
