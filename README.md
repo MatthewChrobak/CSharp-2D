@@ -5,7 +5,6 @@ We have templates for both. Download links are available below.
 # Components
 	- SFML 2.2 Audio and Graphics with functionality for a rendered user-interface
 	- .NET TCP Networking
-	- Interchangable Components
 
 
 
