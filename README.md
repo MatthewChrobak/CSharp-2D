@@ -1,12 +1,14 @@
 # CSharp-Game-Engine-Framework
 A free open source 2D game engine framework made using C#. Interested in making singleplayer or multiplayer games?
 We have templates for both. Download links are available below.
+[Documentation and Tutorials](https://cdn.rawgit.com/MatthewChrobak/CSharp-2D/master/Documentation/index.html)
 
 # Components
 	- SFML 2.2 Audio and Graphics with functionality for a rendered user-interface
 	- .NET TCP Networking
 
 
+# Templates
 
 To use these project templates, place the zipped files inside your Custom Project Templates folder and restart Visual Studio.
 The Custom Project Template directory can be found in Documents under 
