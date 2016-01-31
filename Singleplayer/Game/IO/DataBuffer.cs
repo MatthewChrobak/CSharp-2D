@@ -273,6 +273,7 @@ namespace Game.IO
                 return 0;
             }
         }
+
         public float ReadFloat() {
             // Make sure we can actually read from the stream.
             // If not, return a default value.
@@ -293,6 +294,7 @@ namespace Game.IO
                 return 0;
             }
         }
+
         public double ReadDouble() {
             // Make sure we can actually read from the stream.
             // If not, return a default value.

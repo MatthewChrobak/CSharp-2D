@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="global.css" />
+		<link type="text/css" rel="stylesheet" href="code.css" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1 style="font-size:48px;">How to compress and decompress a directory</h2>
+            <hr>
+			<p>
+				The CompressDirectory method is meant to be used if you wish to compress <b>multiple</b> 
+				files into a .zip file. All methods in the Compression class are static, and can be referenced 
+				through the classname.
+				<br><br>
+				If you wish to compress or decompress a single file in a .zip file, you need to use the
+				CompressFile and DecompressFile methods. <br><br><b>Use these methods for handling multiple files only.</b>
+			</p><br><br>
+			<h2>- Compression</h2>
+			<pre>
+				<p class="code">
+<span class="comment">// Let 'path' be the location of the directory we wish to compress.</span>
+<span class="keyword">string</span> path = <span class="object">Game</span>.StartupPath + <span class="string">"data\\"</span>;
+
+<span class="comment">// Let 'zipPath' be the location of the zip file we wish to make.</span>
+<span class="comment">// Make sure the save path is not contained in the source directory.</span>
+<span class="keyword">string</span> zipPath = <span class="object">Game</span>.StartupPath + <span class="string">"file.zip"</span>;
+
+<span class="comment">// Compress the directory 'path' into a file 'zipPath'.</span>
+<span class="object">Compression</span>.CompressDirectory(path, zipPath);
+				</p>
+			</pre>
+			<h2>- Decompression</h2>
+			<pre>
+				<p class="code">
+<span class="comment">// Let 'zipPath' be the location of a .zip file made with the CompressDirectory method.</span>
+<span class="keyword">string</span> zipPath = <span class="object">Game</span>.StartupPath + <span class="string">"file.zip"</span>;
+
+<span class="comment">// Let 'sourcePath' be the directory we wish to put the decompressed files into.</span>
+<span class="keyword">string</span> sourcePath = <span class="object">Game</span>.StartupPath + <span class="string">"data\\"</span>;
+<span class="object">Compression</span>.DecompressDirectory(path);
+
+<span class="comment">// Decompress the contents of 'zipPath' into 'sourcePath'.</span>
+<span class="object">Compression</span>.DecompressDirectory(zipPath, sourcePath);
+				</p>
+			</pre>
+		</div>
+        <div id="navigation">
+            <hr>
+            <h2> Namespaces </h2>
+            <ul id="nav-list">
+                <li>
+                    <a href="audio namespace.html">Audio</a>
+                </li>
+                <li>
+                    <a href="data namespace.html">Data</a>
+                </li>
+                <li>
+                    <a href="graphics namespace.html">Graphics</a>
+                </li>
+                <li>
+                    <a href="io namespace.html">IO</a>
+                </li>
+                <li>
+                    <a href="networking namespace.html">Networking</a>
+                </li>
+            </ul>
+            <hr>
+            <a href="index.html">Return home</a>
+        </div>
+    </body>
+</html>

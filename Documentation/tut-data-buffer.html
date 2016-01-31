@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="global.css" />
+		<link type="text/css" rel="stylesheet" href="code.css" />
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1 style="font-size:48px;">How to use the DataBuffer class</h2>
+            <hr>
+			<p>
+				The DataBuffer class is a very useful class to use; especially when working
+				with packet sending.
+				
+				Conceptually, it's not very complicated. Create a new instance of the class, and either 
+				read or write values to or from it.
+			</p>
+			<h2>- Writing to the DataBuffer</h2>
+			<pre>
+				<p class="code">
+<span class="comment">// Create a new object.</span>
+<span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="object">DataBuffer</span>();
+
+<span class="comment">// Write values to it.</span>
+buffer.Write("String value");
+buffer.Write(<span class="keyword">true</span>);
+buffer.Write(1.55f);
+buffer.Write(<span class="keyword">new byte</span>[] { 1, 2, 3, 4, 5 });
+				</p>
+			</pre>
+			<h2>- Reading from the DataBuffer</h2>
+			<pre>
+				<p class="code">
+<span class="comment">// Suppose 'array' is a byte array containing information we wish to get. </span>
+<span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="object">DataBuffer</span>(array);
+
+<span class="comment">// Read the values from the object.</span>
+<span class="keyword">string</span> name = buffer.ReadString();
+<span class="keyword">int</span> number = buffer.ReadInt();
+<span class="keyword">byte</span>[] data = buffer.ReadBytes();
+				</p>
+			</pre>
+		</div>
+        <div id="navigation">
+            <hr>
+            <h2> Namespaces </h2>
+            <ul id="nav-list">
+                <li>
+                    <a href="audio namespace.html">Audio</a>
+                </li>
+                <li>
+                    <a href="data namespace.html">Data</a>
+                </li>
+                <li>
+                    <a href="graphics namespace.html">Graphics</a>
+                </li>
+                <li>
+                    <a href="io namespace.html">IO</a>
+                </li>
+                <li>
+                    <a href="networking namespace.html">Networking</a>
+                </li>
+            </ul>
+            <hr>
+            <a href="index.html">Return home</a>
+        </div>
+    </body>
+</html>
