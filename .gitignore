@@ -1,3 +1,7 @@
 *.suo
 **bin/
 **obj/
+*.user
+*.txt
+*.dll
+**libs/

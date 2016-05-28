@@ -7,8 +7,8 @@ namespace Game.Graphics.Sfml.Scenes.Objects
     public class Textbox : SceneObject
     {
         public string Text = string.Empty;
-        public Color TextColor;
-        public uint FontSize;
+        public Color TextColor = Color.Black;
+        public uint FontSize = 12;
         public int MaxLength;
         public char PasswordChar;
 
@@ -48,7 +48,11 @@ namespace Game.Graphics.Sfml.Scenes.Objects
             GraphicsManager.Graphics.DrawObject(text);
         }
 
-        public override void KeyDown(string key) {
+        public sealed override string GetObjectType() {
+            return "Textbox";
+        }
+
+        public override void ObjectKeyDown(string key) {
             switch (key) {
                 case "backspace":
                     // If the backspace button is pressed when this object has the focus, then
@@ -67,13 +71,28 @@ namespace Game.Graphics.Sfml.Scenes.Objects
         }
 
         public override string GetStringValue(string key) {
-            // Allow users to be able to get the text from this object.
+            // Figure out what property is being requested.
             switch (key.ToLower()) {
                 case "caption":
                 case "text":
                     return this.Text;
+                case "passwordchar":
+                case "password":
+                    return this.PasswordChar.ToString();
                 default:
-                    return string.Empty;
+                    return base.GetStringValue(key);
+            }
+        }
+
+        public override int GetIntValue(string key) {
+            // Figure out what property is being requested.
+            switch (key.ToLower()) {
+                case "fontsize":
+                    return (int)this.FontSize;
+                case "maxlength":
+                    return this.MaxLength;
+                default:
+                    return base.GetIntValue(key);
             }
         }
     }

@@ -4,14 +4,30 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B775C4E9-A624-4E6F-8837-5E0387C07260}</ProjectGuid>
+    <ProjectGuid>{843A7662-1D8D-4A7E-904A-B37BA358392C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Game</RootNamespace>
     <AssemblyName>Game</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -24,30 +40,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="sfmlnet-audio-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\sfmlnet-audio-2.dll</HintPath>
+      <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-graphics-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\sfmlnet-graphics-2.dll</HintPath>
+      <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-system-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\sfmlnet-system-2.dll</HintPath>
+      <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-system-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-window-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\sfmlnet-window-2.dll</HintPath>
+      <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -69,29 +86,48 @@
     <Compile Include="Audio\Sfml\PlayingMusic.cs" />
     <Compile Include="Audio\Sfml\PlayingSound.cs" />
     <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="GameFlags.cs" />
     <Compile Include="GameStates.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
+    <Compile Include="Graphics\IScenes.cs" />
     <Compile Include="Graphics\ISystem.cs" />
     <Compile Include="Graphics\Sfml\GraphicalSurface.cs" />
-    <Compile Include="Graphics\IScenes.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\GuiEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Sfml\Scenes\GuiEditor.Designer.cs">
+      <DependentUpon>GuiEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Sfml\Scenes\ISceneObject.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\Button.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\CheckBox.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\Image.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\Label.cs" />
     <Compile Include="Graphics\Sfml\Scenes\Objects\Textbox.cs" />
+    <Compile Include="Graphics\Sfml\Scenes\PropertyNotFoundException.cs" />
     <Compile Include="Graphics\Sfml\Scenes\SceneObject.cs" />
     <Compile Include="Graphics\Sfml\Scenes\SceneSystem.cs" />
-    <Compile Include="Graphics\Sfml\Scenes\ZOrder.cs" />
     <Compile Include="Graphics\Sfml\Sfml.cs" />
     <Compile Include="Graphics\SurfaceTypes.cs" />
     <Compile Include="IO\Compression.cs" />
     <Compile Include="IO\DataBuffer.cs" />
     <Compile Include="IO\FolderSystem.cs" />
     <Compile Include="IO\Serialization.cs" />
-    <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Graphics\Sfml\Scenes\GuiEditor.resx">
+      <DependentUpon>GuiEditor.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Models\" />
@@ -115,18 +151,32 @@
     <Content Include="libsndfile-1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libs\sfmlnet-audio-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libs\sfmlnet-graphics-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libs\sfmlnet-system-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libs\sfmlnet-window-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Libs\SFML 2.2\x86 to x64 and Vice Versa Tutorial.txt" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-audio-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-graphics-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-network-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-system-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-window-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\libsndfile-1.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\openal32.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\OpenTK.Compatibility.dll" />
+    <Content Include="Libs\SFML 2.2\x86\extlibs\OpenTK.dll" />
+    <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-audio-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-graphics-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-system-2.dll" />
+    <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-window-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-audio-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-graphics-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-system-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-window-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\libsndfile-1.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\openal32.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\OpenTK.Compatibility.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\OpenTK.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-audio-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-graphics-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-system-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-window-2.dll" />
     <Content Include="openal32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -137,7 +187,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Fonts\Romanesque-Serif.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

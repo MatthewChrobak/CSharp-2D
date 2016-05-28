@@ -3,12 +3,11 @@
     public static class AudioManager
     {
         // Sound directories.
-        public static readonly string AudioDir = Game.StartupPath + "audio\\";
-        public static readonly string MusicDir = AudioDir + "music\\";
-        public static readonly string SoundDir = AudioDir + "sounds\\";
+        public static readonly string AudioDir = Game.StartupPath + "Audio\\";
+        public static readonly string MusicDir = AudioDir + "Music\\";
+        public static readonly string SoundDir = AudioDir + "Sounds\\";
 
         // The class object containing the audio system.
-
         public static IPlayer Player { private set; get; }
 
         public static void Initialize() {

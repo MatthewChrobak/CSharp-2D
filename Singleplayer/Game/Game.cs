@@ -10,7 +10,7 @@ namespace Game
     {
         // Global variables related to the game.
         public static readonly string StartupPath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly string DataPath = Game.StartupPath + "data\\";
+        public static readonly string DataPath = Game.StartupPath + "Data\\";
         public static GameState State { private set; get; }
         public static GameFlag Flag { private set; get; }
 
