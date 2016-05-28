@@ -1,7 +1,8 @@
 *.suo
-**bin/
-**obj/
 *.user
 *.txt
 *.dll
+*.ttf
+**bin/
+**obj/
 **libs/
