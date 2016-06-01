@@ -140,9 +140,6 @@
     <Content Include="csfml-graphics-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="csfml-network-2.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="csfml-system-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -155,7 +152,6 @@
     <Content Include="Libs\SFML 2.2\x86 to x64 and Vice Versa Tutorial.txt" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-audio-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-graphics-2.dll" />
-    <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-network-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-system-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-window-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\libsndfile-1.dll" />
