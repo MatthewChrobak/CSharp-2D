@@ -30,7 +30,7 @@ namespace Game.Audio.Sfml
                 // Loop through every playing music in the collection.
                 for (int i = _music.Count - 1; i >= 0; i--) {
                     // Is the playing music marked to be disposed of?
-                    if (_music[i].Disposable()) {
+                    if (_music[i]?.Disposable() == true) {
                         // Dispose of the playing music and remove it from the collection.
                         _music[i].Dispose();
                         _music.RemoveAt(i);
@@ -40,7 +40,7 @@ namespace Game.Audio.Sfml
                 // Loop through every playing sound in the collection.
                 for (int i = _sounds.Count - 1; i >= 0; i--) {
                     // Is the playing sound marked to be disposed of?
-                    if (_sounds[i].Disposable()) {
+                    if (_sounds[i]?.Disposable() == true) {
                         // Dispose of the playing sound and remove it from the collection.
                         _sounds[i].Dispose();
                         _sounds.RemoveAt(i);
