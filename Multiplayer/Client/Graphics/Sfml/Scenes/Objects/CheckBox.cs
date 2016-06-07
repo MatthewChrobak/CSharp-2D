@@ -11,9 +11,9 @@ namespace Client.Graphics.Sfml.Scenes.Objects
 
         public GraphicalSurface SurfaceUnchecked;
         public bool Checked;
-        public string Caption;
-        public Color TextColor;
-        public uint FontSize;
+        public string Caption = "sample text";
+        public Color TextColor = Color.Black;
+        public uint FontSize = 12;
 
         public override void Draw() {
             // No call will be made to the base Draw method.
@@ -59,9 +59,27 @@ namespace Client.Graphics.Sfml.Scenes.Objects
             }
         }
 
-        public override void MouseDown(int x, int y) {
+        public sealed override string GetObjectType() {
+            return "CheckBox";
+        }
+
+        public override void ObjectMouseDown(string button, int x, int y) {
             // When we click on the object, inverse the checked state.
             this.Checked = !this.Checked;
+
+            // Call the base to check for user-specified event handling.
+            base.ObjectMouseDown(button, x, y);
+        }
+
+        public override string GetStringValue(string key) {
+            // Figure out what property is being requested.
+            switch (key.ToLower()) {
+                case "caption":
+                case "text":
+                    return this.Caption;
+                default:
+                    return base.GetStringValue(key);
+            }
         }
 
         public override bool GetBoolValue(string key) {
@@ -72,7 +90,17 @@ namespace Client.Graphics.Sfml.Scenes.Objects
                 case "checked":
                     return this.Checked;
                 default:
-                    return false;
+                    return base.GetBoolValue(key);
+            }
+        }
+
+        public override int GetIntValue(string key) {
+            // Figure out what property is being requested.
+            switch (key.ToLower()) {
+                case "fontsize":
+                    return (int)this.FontSize;
+                default:
+                    return base.GetIntValue(key);
             }
         }
     }

@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Server.IO;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Sockets;
 using System.Threading;
 
 namespace Server.Networking.Net
 {
-    public class Client {
+    public class Client
+    {
         // The socket to maintain the connection with the client, its flag, and
         // a boolean variable for the server to dictate whether or not the 
         // socket is connected.
@@ -19,7 +23,6 @@ namespace Server.Networking.Net
         // Wait packet variables.
         private int _ticket;
         private int _servicing;
-
 
         public Client(Socket connection, int index) {
             // Store the socket connection for later use.
@@ -212,7 +215,7 @@ namespace Server.Networking.Net
             try {
                 this._socket.Disconnect(false);
             } catch { }
-            
+
             // Set the buffers to null, and mark this client
             // as not conencted.
             this._inBuffer = null;
@@ -235,7 +238,6 @@ namespace Server.Networking.Net
         private string GetAddress() {
             string endpoint = this._socket.RemoteEndPoint.ToString();
             return endpoint.Remove(endpoint.IndexOf(':'));
-
         }
     }
 }

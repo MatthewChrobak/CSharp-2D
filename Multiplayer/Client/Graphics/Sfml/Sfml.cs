@@ -1,5 +1,6 @@
 ﻿using Client.Graphics.Sfml.Scenes;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,7 @@ namespace Client.Graphics.Sfml
             this.LoadFont();
 
             // Create a new renderwindow that we can render graphics onto.
-            this.DrawingSurface = new RenderWindow(new VideoMode(300, 300), "Title", Styles.Close);
+            this.DrawingSurface = new RenderWindow(new VideoMode(GraphicsManager.DrawWidth, GraphicsManager.DrawHeight), "Title", Styles.Close);
 
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
@@ -56,6 +57,19 @@ namespace Client.Graphics.Sfml
             this.DrawingSurface.Dispose();
         }
 
+        public void ResizeScreen(uint width, uint height) {
+            // Actually resize the drawing surface.
+            this.DrawingSurface.Size = new Vector2u(width, height);
+
+            // Set the new window size.
+            GraphicsManager.WindowHeight = height;
+            GraphicsManager.WindowWidth = width;
+
+            // Set the drawing ratios.
+            GraphicsManager.WidthRatio = (float)GraphicsManager.DrawWidth / width;
+            GraphicsManager.HeightRatio = (float)GraphicsManager.DrawHeight / height;
+        }
+
         private void CreateEventHandlers() {
             // Create a new scene system to handle the events.
             this.SceneSystem = new SceneSystem();
@@ -63,13 +77,17 @@ namespace Client.Graphics.Sfml
 
             // For mouse related events, just pass off the coords to the scene system.
             this.DrawingSurface.MouseButtonPressed += (sender, e) => {
-                this.SceneSystem.MouseDown(e.Button.ToString().ToLower(), e.X, e.Y);
+                this.SceneSystem.MouseDown(e.Button.ToString().ToLower(), (int)(e.X * GraphicsManager.WidthRatio), (int)(e.Y * GraphicsManager.HeightRatio));
             };
             this.DrawingSurface.MouseButtonReleased += (sender, e) => {
-                this.SceneSystem.MouseUp(e.Button.ToString().ToLower(), e.X, e.Y);
+                this.SceneSystem.MouseUp(e.Button.ToString().ToLower(), (int)(e.X * GraphicsManager.WidthRatio), (int)(e.Y * GraphicsManager.HeightRatio));
             };
             this.DrawingSurface.MouseMoved += (sender, e) => {
-                this.SceneSystem.MouseMove(e.X, e.Y);
+#if DEBUG
+                // Display the coordinates if we're in debug mode.
+                this.DrawingSurface.SetTitle("X: " + (int)(e.X * GraphicsManager.WidthRatio) + " Y:" + (int)(e.Y * GraphicsManager.HeightRatio));
+#endif
+                this.SceneSystem.MouseMove((int)(e.X * GraphicsManager.WidthRatio), (int)(e.Y * GraphicsManager.HeightRatio));
             };
 
             // For key related events, pass off the filtered keyname to the scene system.
@@ -97,10 +115,7 @@ namespace Client.Graphics.Sfml
         }
 
         private void LoadFont() {
-            // Return early because a default tff file is not included.
-            return;
-
-            string fontFile = GraphicsManager.FontPath + "font.ttf";
+            string fontFile = GraphicsManager.FontPath + "Romanesque-Serif.ttf";
 
             // Make sure that the ttf file exists.
             if (File.Exists(fontFile)) {

@@ -9,7 +9,7 @@ namespace Server
     {
         // Global variables related to the game.
         public static readonly string StartupPath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly string DataPath = Server.StartupPath + "data\\";
+        public static readonly string DataPath = Server.StartupPath + "Data\\";
 
         // The main point of entry for the application.
         private static void Main(string[] args) {
@@ -28,7 +28,7 @@ namespace Server
             Server.Write("Remember to turn off the server by pressing [CTRL + C] or [CTRL + BREAK].");
             Server.Write("If you do not, all online player's data will NOT be saved.");
             Server.Write("------------------------------------------------------------------------------");
-            System.Console.CancelKeyPress += (s, e) => {
+            Console.CancelKeyPress += (s, e) => {
                 Server.Destroy();
             };
 
@@ -38,7 +38,6 @@ namespace Server
 
         private static void GameLoop() {
             while (true) {
-
             }
         }
 
@@ -50,9 +49,9 @@ namespace Server
 
         public static void Write(string message, bool newline = true) {
             if (newline) {
-                System.Console.WriteLine(message);
+                Console.WriteLine(message);
             } else {
-                System.Console.Write(message);
+                Console.Write(message);
             }
             
         }

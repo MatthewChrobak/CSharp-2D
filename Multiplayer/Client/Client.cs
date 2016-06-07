@@ -11,7 +11,7 @@ namespace Client
     {
         // Global variables related to the client.
         public static readonly string StartupPath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly string DataPath = Client.StartupPath + "data\\";
+        public static readonly string DataPath = Client.StartupPath + "Data\\";
         public static ClientState State { private set; get; }
         public static ClientFlag Flag { private set; get; }
 
@@ -67,7 +67,7 @@ namespace Client
             }
         }
 
-        public static void SetGameState(ClientState state) {
+        public static void SetClientState(ClientState state) {
             switch (state) {
                 case ClientState.MainMenu:
                     Client.State = state;

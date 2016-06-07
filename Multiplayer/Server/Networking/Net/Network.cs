@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.IO;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -48,6 +49,9 @@ namespace Server.Networking.Net
         }
 
         public void SendDataTo(int index, byte[] array) {
+            // Pad the packet with its length.
+            array = new DataBuffer(array).ToPaddedArray();
+
             // Make sure that the index provided is a valid client index.
             if (index >= 0 && index < this._client.Count) {
                 this._client[index].SendData(array); 
@@ -58,6 +62,9 @@ namespace Server.Networking.Net
         }
 
         public void SendDataToAll(byte[] array) {
+            // Pad the packet with its length.
+            array = new DataBuffer(array).ToPaddedArray();
+
             // Send the given data to every client in the collection.
             foreach (var client in this._client) {
                 client.SendData(array);

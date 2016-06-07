@@ -6,19 +6,22 @@ namespace Client.Networking
 {
     public class PacketManager
     {
-        private delegate void HandleData(byte[] array);
-        private List<HandleData> _handleData;
+        public Dictionary<int, Action<byte[]>> PacketHandlers { get; private set; }
 
         public PacketManager() {
             // Create the array of data handlers.
-            this._handleData = new List<HandleData>((int)Packet.Length);
+            this.PacketHandlers = new Dictionary<int, Action<byte[]>>();
 
             // Add all packet handlers to the array here.
         }
 
+        private void AddPacket(Action<byte[]> packet) {
+            this.PacketHandlers.Add(PacketHandlers.Keys.Count, packet);
+        }
+
         private byte[] RemovePacketHead(byte[] array) {
             // If the size of the entire buffer is 8, all the packet contains is the head and size.
-            // Packets like that are just initiation packets, and don't actually contin
+            // Packets like that are just initiation packets, and don't actually contain
             // other data. So, what we return won't be manipulated anyways. Return null.
             if (array.Length == 8) {
                 return null;
@@ -55,8 +58,8 @@ namespace Client.Networking
 
                     // Read the packet head, validate its contents, and invoke its data handler.
                     int head = packet.ReadInt();
-                    if (head >= 0 && head < _handleData.Count) {
-                        _handleData[head].Invoke(RemovePacketHead(array));
+                    if (PacketHandlers.ContainsKey(head)) {
+                        PacketHandlers[head].Invoke(RemovePacketHead(array));
                     }
 
                     // Re-create the databuffer object with just the excess bytes, and 
@@ -68,13 +71,19 @@ namespace Client.Networking
 
                     // Read the packet head, validate its contents, and invoke its data handler.
                     int head = packet.ReadInt();
-                    if (head >= 0 && head < _handleData.Count) {
-                        _handleData[head].Invoke(RemovePacketHead(array));
+                    if (PacketHandlers.ContainsKey(head)) {
+                        PacketHandlers[head].Invoke(RemovePacketHead(array));
                     }
 
                     // Return an empty array.
                     return new byte[0];
                 } else {
+                    // Display a message if something goes wrong.
+                    if (size > 8192) {
+                        Client.Write("Absurd packet size expected: " + size);
+                        return new byte[0];
+                    }
+
                     // We have less data than we need. There's nothing to process yet.
                     process = false;
                 }
