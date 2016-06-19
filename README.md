@@ -14,9 +14,9 @@ To use these project templates, place the zipped files inside your Custom Projec
 The Custom Project Template directory can be found in Documents under 
 "Documents/Visual Studio (version)/Templates/ProjectTemplates/"
 
-[Multiplayer-Client Template (OUTDATED - updates pending)](http://www.mediafire.com/download/fno2clkuyqu3ooo/2D_Multiplayer_Engine_Client.zip)
+[Multiplayer-Client Template](http://www.mediafire.com/download/fno2clkuyqu3ooo/2D_Multiplayer_Engine_Client.zip)
 
-[Multiplayer-Server Template (OUTDATED - updates pending)](http://www.mediafire.com/download/d25ee3u9y733p5k/2D_Multiplayer_Engine_Server.zip)
+[Multiplayer-Server Template](http://www.mediafire.com/download/d25ee3u9y733p5k/2D_Multiplayer_Engine_Server.zip)
 
 [Singleplayer Template](http://www.mediafire.com/download/3svtpd2sxl0vadg/2D+Singleplayer+Engine.zip)
 
