@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace Client.Networking.Net
+namespace MultiplayerEngine_Client.Networking.Net
 {
     public class Network : INetwork
     {

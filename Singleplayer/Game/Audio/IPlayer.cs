@@ -1,4 +1,4 @@
-﻿namespace Game.Audio
+﻿namespace SingleplayerEngine.Audio
 {
     public interface IPlayer
     {

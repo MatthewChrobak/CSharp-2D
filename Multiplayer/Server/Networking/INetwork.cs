@@ -1,4 +1,4 @@
-﻿namespace Server.Networking
+﻿namespace MultiplayerEngine_Server.Networking
 {
     public interface INetwork
     {

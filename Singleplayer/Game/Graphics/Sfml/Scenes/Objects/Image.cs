@@ -1,4 +1,4 @@
-﻿namespace Game.Graphics.Sfml.Scenes.Objects
+﻿namespace SingleplayerEngine.Graphics.Sfml.Scenes.Objects
 {
     public class Image : SceneObject
     {

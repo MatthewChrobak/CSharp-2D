@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using System.IO;
 
-namespace Game.Graphics.Sfml
+namespace SingleplayerEngine.Graphics.Sfml
 {
     public class GraphicalSurface
     {

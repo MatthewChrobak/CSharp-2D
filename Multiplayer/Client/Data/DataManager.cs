@@ -1,4 +1,4 @@
-﻿namespace Client.Data
+﻿namespace MultiplayerEngine_Client.Data
 {
     public static class DataManager
     {

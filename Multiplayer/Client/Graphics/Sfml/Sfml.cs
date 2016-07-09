@@ -1,11 +1,11 @@
-﻿using Client.Graphics.Sfml.Scenes;
+﻿using MultiplayerEngine_Client.Graphics.Sfml.Scenes;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Client.Graphics.Sfml
+namespace MultiplayerEngine_Client.Graphics.Sfml
 {
     public class Sfml : IGraphics
     {

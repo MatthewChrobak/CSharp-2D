@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Client.IO
+namespace MultiplayerEngine_Client.IO
 {
     public class DataBuffer
     {

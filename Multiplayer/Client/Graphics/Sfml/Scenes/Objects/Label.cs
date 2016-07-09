@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace Client.Graphics.Sfml.Scenes.Objects
+namespace MultiplayerEngine_Client.Graphics.Sfml.Scenes.Objects
 {
     public class Label : SceneObject
     {

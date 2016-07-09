@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace Game.IO
+namespace SingleplayerEngine.IO
 {
     public static class Compression
     {

@@ -1,4 +1,4 @@
-﻿namespace Game.Graphics.Sfml.Scenes
+﻿namespace SingleplayerEngine.Graphics.Sfml.Scenes
 {
     partial class GuiEditor
     {

@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 
-namespace Game.Graphics.Sfml.Scenes.Objects
+namespace SingleplayerEngine.Graphics.Sfml.Scenes.Objects
 {
     public class CheckBox : SceneObject
     {

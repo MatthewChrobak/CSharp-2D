@@ -1,4 +1,4 @@
-﻿namespace Client.Networking.Net
+﻿namespace MultiplayerEngine_Client.Networking.Net
 {
     public enum SocketSendFlag
     {

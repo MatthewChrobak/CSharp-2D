@@ -1,4 +1,4 @@
-﻿namespace Client.Graphics
+﻿namespace MultiplayerEngine_Client.Graphics
 {
     public enum SurfaceTypes
     {

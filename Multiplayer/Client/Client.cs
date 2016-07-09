@@ -1,11 +1,11 @@
-﻿using Client.Audio;
-using Client.Data;
-using Client.Graphics;
-using Client.IO;
-using Client.Networking;
+﻿using MultiplayerEngine_Client.Audio;
+using MultiplayerEngine_Client.Data;
+using MultiplayerEngine_Client.Graphics;
+using MultiplayerEngine_Client.IO;
+using MultiplayerEngine_Client.Networking;
 using System;
 
-namespace Client
+namespace MultiplayerEngine_Client
 {
     public static class Client
     {
@@ -53,6 +53,9 @@ namespace Client
                     GraphicsManager.Graphics?.Draw();
                     tick16 = tick + 16;
                 }
+
+                // Yield the thread to maximize core performance.
+                System.Threading.Thread.Yield();
             }
 
             // The client will only be destroyed when the flag is set to closing.

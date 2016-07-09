@@ -1,11 +1,11 @@
-﻿using Client.Graphics.Sfml.Scenes.Objects;
+﻿using MultiplayerEngine_Client.Graphics.Sfml.Scenes.Objects;
 using SFML.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
 
-namespace Client.Graphics.Sfml.Scenes
+namespace MultiplayerEngine_Client.Graphics.Sfml.Scenes
 {
     public class SceneSystem : IScenes
     {

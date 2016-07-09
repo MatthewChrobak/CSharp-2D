@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{00672B11-C565-437A-A35E-816B4A0D4206}</ProjectGuid>
+    <ProjectGuid>{843A7662-1D8D-4A7E-904A-B37BA358392C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <RootNamespace>SingleplayerEngine</RootNamespace>
+    <AssemblyName>SingleplayerEngine</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -38,6 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -50,19 +51,19 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="sfmlnet-audio-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="sfmlnet-audio-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-graphics-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="sfmlnet-graphics-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-system-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="sfmlnet-system-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-system-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-window-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=AMD64">
+    <Reference Include="sfmlnet-window-2, Version=2.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\SFML 2.2\x86\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
@@ -86,8 +87,9 @@
     <Compile Include="Audio\Sfml\PlayingMusic.cs" />
     <Compile Include="Audio\Sfml\PlayingSound.cs" />
     <Compile Include="Data\DataManager.cs" />
-    <Compile Include="ClientFlags.cs" />
-    <Compile Include="ClientStates.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameFlags.cs" />
+    <Compile Include="GameStates.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\IGraphics.cs" />
     <Compile Include="Graphics\IScenes.cs" />
@@ -114,13 +116,18 @@
     <Compile Include="IO\DataBuffer.cs" />
     <Compile Include="IO\FolderSystem.cs" />
     <Compile Include="IO\Serialization.cs" />
-    <Compile Include="Networking\INetwork.cs" />
-    <Compile Include="Networking\NetworkManager.cs" />
-    <Compile Include="Networking\Net\Network.cs" />
-    <Compile Include="Networking\Net\SocketSendFlags.cs" />
-    <Compile Include="Networking\PacketManager.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="Networking\Packets.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Graphics\Sfml\Scenes\GuiEditor.resx">
+      <DependentUpon>GuiEditor.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Models\" />
@@ -142,18 +149,6 @@
     <Content Include="libsndfile-1.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-audio-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-graphics-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-system-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-window-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\libsndfile-1.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\openal32.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\OpenTK.Compatibility.dll" />
-    <Content Include="Libs\SFML 2.2\x64\extlibs\OpenTK.dll" />
-    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-audio-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-graphics-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-system-2.dll" />
-    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-window-2.dll" />
     <Content Include="Libs\SFML 2.2\x86 to x64 and Vice Versa Tutorial.txt" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-audio-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\extlibs\csfml-graphics-2.dll" />
@@ -167,6 +162,18 @@
     <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-graphics-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-system-2.dll" />
     <Content Include="Libs\SFML 2.2\x86\lib\sfmlnet-window-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-audio-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-graphics-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-system-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\csfml-window-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\libsndfile-1.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\openal32.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\OpenTK.Compatibility.dll" />
+    <Content Include="Libs\SFML 2.2\x64\extlibs\OpenTK.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-audio-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-graphics-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-system-2.dll" />
+    <Content Include="Libs\SFML 2.2\x64\lib\sfmlnet-window-2.dll" />
     <Content Include="openal32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -178,23 +185,15 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Graphics\Sfml\Scenes\GuiEditor.resx">
-      <DependentUpon>GuiEditor.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\Fonts\Romanesque-Serif.ttf">
+    <Content Include="Data\Fonts\Romanesque-Serif.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

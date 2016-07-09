@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace Game.Graphics.Sfml.Scenes.Objects
+namespace SingleplayerEngine.Graphics.Sfml.Scenes.Objects
 {
     public class Button : SceneObject
     {

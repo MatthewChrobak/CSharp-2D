@@ -1,4 +1,4 @@
-﻿namespace Game.Data
+﻿namespace SingleplayerEngine.Data
 {
     public static class DataManager
     {

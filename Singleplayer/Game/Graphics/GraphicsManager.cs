@@ -1,4 +1,4 @@
-﻿namespace Game.Graphics
+﻿namespace SingleplayerEngine.Graphics
 {
     public static class GraphicsManager
     {

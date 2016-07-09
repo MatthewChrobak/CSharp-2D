@@ -1,10 +1,10 @@
-﻿using Game.Audio;
-using Game.Data;
-using Game.Graphics;
-using Game.IO;
+﻿using SingleplayerEngine.Audio;
+using SingleplayerEngine.Data;
+using SingleplayerEngine.Graphics;
+using SingleplayerEngine.IO;
 using System;
 
-namespace Game
+namespace SingleplayerEngine
 {
     public static class Game
     {
@@ -49,6 +49,9 @@ namespace Game
                     GraphicsManager.Graphics?.Draw();
                     tick16 = tick + 16;
                 }
+
+                // Yield the thread to maximize core performance.
+                System.Threading.Thread.Yield();
             }
 
             // The game will only be destroyed when the flag is set to closing.

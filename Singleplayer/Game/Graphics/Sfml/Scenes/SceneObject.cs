@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 
-namespace Game.Graphics.Sfml.Scenes
+namespace SingleplayerEngine.Graphics.Sfml.Scenes
 {
     public abstract class SceneObject : ISceneObject
     {

@@ -1,9 +1,9 @@
-﻿using Server.Data;
-using Server.IO;
-using Server.Networking;
+﻿using MultiplayerEngine_Server.Data;
+using MultiplayerEngine_Server.IO;
+using MultiplayerEngine_Server.Networking;
 using System;
 
-namespace Server
+namespace MultiplayerEngine_Server
 {
     public static class Server
     {
@@ -38,12 +38,22 @@ namespace Server
 
         private static void GameLoop() {
             while (true) {
+                // Introduce game logic here.
+
+                // Yield the thread to maximize core performance.
+                System.Threading.Thread.Yield();
             }
         }
 
         private static void Destroy() {
+            // Destroy the network so all online players will be
+            // disconnected properly.
             NetworkManager.Destroy();
+
+            // Save all game-related data.
             DataManager.Save();
+
+            // Exit the application.
             Environment.Exit(0);
         }
 

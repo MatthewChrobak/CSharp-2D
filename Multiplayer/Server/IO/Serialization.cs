@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Server.IO
+namespace MultiplayerEngine_Server.IO
 {
     public class Serialization
     {

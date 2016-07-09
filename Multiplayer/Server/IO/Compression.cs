@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace Server.IO
+namespace MultiplayerEngine_Server.IO
 {
     public static class Compression
     {

@@ -1,4 +1,4 @@
-﻿namespace Game.Audio.Sfml
+﻿namespace SingleplayerEngine.Audio.Sfml
 {
     public enum AudioFlag
     {

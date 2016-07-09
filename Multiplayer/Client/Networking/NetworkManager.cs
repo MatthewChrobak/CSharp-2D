@@ -1,4 +1,4 @@
-﻿namespace Client.Networking
+﻿namespace MultiplayerEngine_Client.Networking
 {
     public static class NetworkManager
     {

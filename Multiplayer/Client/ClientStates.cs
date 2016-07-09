@@ -1,4 +1,4 @@
-﻿namespace Client
+﻿namespace MultiplayerEngine_Client
 {
     public enum ClientState
     {

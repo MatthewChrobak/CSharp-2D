@@ -1,11 +1,11 @@
-﻿using Game.Graphics.Sfml.Scenes.Objects;
+﻿using SingleplayerEngine.Graphics.Sfml.Scenes.Objects;
 using SFML.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
 
-namespace Game.Graphics.Sfml.Scenes
+namespace SingleplayerEngine.Graphics.Sfml.Scenes
 {
     public class SceneSystem : IScenes
     {

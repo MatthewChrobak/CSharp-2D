@@ -1,10 +1,10 @@
-﻿using Server.IO;
+﻿using MultiplayerEngine_Server.IO;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 
-namespace Server.Networking.Net
+namespace MultiplayerEngine_Server.Networking.Net
 {
     public class Network : INetwork
     {

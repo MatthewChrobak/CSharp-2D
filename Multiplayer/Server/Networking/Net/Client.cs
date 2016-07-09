@@ -1,11 +1,11 @@
-﻿using Server.IO;
+﻿using MultiplayerEngine_Server.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace Server.Networking.Net
+namespace MultiplayerEngine_Server.Networking.Net
 {
     public class Client
     {

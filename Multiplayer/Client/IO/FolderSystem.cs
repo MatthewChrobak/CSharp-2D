@@ -1,8 +1,8 @@
-﻿using Client.Audio;
-using Client.Graphics;
+﻿using MultiplayerEngine_Client.Audio;
+using MultiplayerEngine_Client.Graphics;
 using System.IO;
 
-namespace Client.IO
+namespace MultiplayerEngine_Client.IO
 {
     public static class FolderSystem
     {

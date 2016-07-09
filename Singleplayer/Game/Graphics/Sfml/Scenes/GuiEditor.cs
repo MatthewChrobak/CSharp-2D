@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 
-namespace Game.Graphics.Sfml.Scenes
+namespace SingleplayerEngine.Graphics.Sfml.Scenes
 {
     public partial class GuiEditor : Form
     {
@@ -323,10 +323,10 @@ namespace Game.Graphics.Sfml.Scenes
                 obj.Name, type,
 
                 // {2}      {3}
-                obj.Width, _obj.Height,
+                obj.Width, obj.Height,
 
                 // {4}      {5}
-                obj.Top, _obj.Left,
+                obj.Top, obj.Left,
 
                 // {6}
                 obj.Surface != null ? obj.Surface.Tag : string.Empty,

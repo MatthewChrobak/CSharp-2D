@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
-namespace Client.Audio.Sfml
+namespace MultiplayerEngine_Client.Audio.Sfml
 {
     public class AudioPlayer : IPlayer
     {

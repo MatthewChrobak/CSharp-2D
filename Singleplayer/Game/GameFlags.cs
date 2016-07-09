@@ -1,4 +1,4 @@
-﻿namespace Game
+﻿namespace SingleplayerEngine
 {
     public enum GameFlag
     {

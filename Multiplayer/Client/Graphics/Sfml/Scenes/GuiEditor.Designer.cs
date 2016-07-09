@@ -1,4 +1,4 @@
-﻿namespace Client.Graphics.Sfml.Scenes
+﻿namespace MultiplayerEngine_Client.Graphics.Sfml.Scenes
 {
     partial class GuiEditor
     {

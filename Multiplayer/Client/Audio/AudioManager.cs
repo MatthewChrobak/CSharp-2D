@@ -1,4 +1,4 @@
-﻿namespace Client.Audio
+﻿namespace MultiplayerEngine_Client.Audio
 {
     public static class AudioManager
     {

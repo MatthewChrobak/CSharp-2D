@@ -2,7 +2,7 @@
 using SFML.System;
 using System.Text.RegularExpressions;
 
-namespace Game.Graphics.Sfml.Scenes.Objects
+namespace SingleplayerEngine.Graphics.Sfml.Scenes.Objects
 {
     public class Textbox : SceneObject
     {

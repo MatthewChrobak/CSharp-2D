@@ -1,4 +1,4 @@
-﻿namespace Server.Data
+﻿namespace MultiplayerEngine_Server.Data
 {
     public static class DataManager
     {

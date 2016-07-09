@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Server.IO
+namespace MultiplayerEngine_Server.IO
 {
     public static class FolderSystem
     {

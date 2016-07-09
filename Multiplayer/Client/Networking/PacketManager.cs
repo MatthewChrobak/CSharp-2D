@@ -1,8 +1,8 @@
-﻿using Client.IO;
+﻿using MultiplayerEngine_Client.IO;
 using System;
 using System.Collections.Generic;
 
-namespace Client.Networking
+namespace MultiplayerEngine_Client.Networking
 {
     public class PacketManager
     {

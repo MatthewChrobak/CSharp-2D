@@ -1,6 +1,6 @@
 ﻿using SFML.Audio;
 
-namespace Game.Audio.Sfml
+namespace SingleplayerEngine.Audio.Sfml
 {
     public class PlayingSound
     {

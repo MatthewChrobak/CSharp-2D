@@ -1,11 +1,11 @@
-﻿using Game.Graphics.Sfml.Scenes;
+﻿using SingleplayerEngine.Graphics.Sfml.Scenes;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Game.Graphics.Sfml
+namespace SingleplayerEngine.Graphics.Sfml
 {
     public class Sfml : IGraphics
     {

@@ -1,8 +1,8 @@
-﻿using Game.Audio;
-using Game.Graphics;
+﻿using SingleplayerEngine.Audio;
+using SingleplayerEngine.Graphics;
 using System.IO;
 
-namespace Game.IO
+namespace SingleplayerEngine.IO
 {
     public static class FolderSystem
     {
