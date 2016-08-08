@@ -57,7 +57,7 @@ namespace SingleplayerEngine.Audio.Sfml
 
         private void TryCreateAudioChecker() {
             // Is the collector null or has it stopped running?
-            if (this._collector?.ThreadState != ThreadState.Running) {
+            if (this._collector == null || this._collector.ThreadState == ThreadState.Stopped) {
                 // Create a new thread of the AudioChecker method and start it.
                 this._collector = new Thread(AudioChecker);
                 this._collector.Start();
