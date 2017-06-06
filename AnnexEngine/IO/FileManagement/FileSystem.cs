@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace AnnexIO
+namespace AnnexEngine.IO.FileManagement
 {
     /// <summary>
     /// Provides basic utility methods for interacting with the filesystem.
