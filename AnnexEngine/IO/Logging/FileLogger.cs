@@ -1,7 +1,8 @@
-﻿using AnnexEngine.IO.Logging.Behaviours;
+﻿using AnnexEngine.IO.FileManagement;
+using AnnexEngine.IO.Logging.Behaviours;
 using System.IO;
 
-namespace AnnexIO.Logging
+namespace AnnexEngine.IO.Logging
 {
     /// <summary>
     /// A decoratable logging object that appends log entries to a given log file.
