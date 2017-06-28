@@ -14,7 +14,10 @@ namespace AnnexEngine.Graphics.Devices.Sfml
         /// </summary>
         private ResourceManager<Sprite> _surfaces;
         private ResourceManager<Font> _fonts;
-
+        
+        /// <summary>
+        /// The window of the graphical device.
+        /// </summary>
         private Window _window;
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace AnnexEngine.Graphics.Devices.Sfml
             this.LoadResources();
 
             // Create a new window.
-            this._window = new Window("Sfml Demo");
+            this._window = new Window(960, 640, "Sfml Demo");
         }
 
         /// <summary>
