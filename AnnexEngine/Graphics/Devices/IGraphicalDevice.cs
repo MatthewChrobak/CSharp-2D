@@ -22,7 +22,7 @@ namespace AnnexEngine.Graphics.Devices
         void DrawText(string text, TextContext context);
 
         /// <summary>
-        /// Destroys the graphical device.
+        /// Destroys the graphical device and unloads the resources it loaded.
         /// </summary>
         void Destroy();
     }
