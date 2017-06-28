@@ -7,7 +7,7 @@ namespace AnnexEngine.Graphics.Devices.Sfml
     /// <summary>
     /// A graphical device implemented using SFML.
     /// </summary>
-    public class SfmlDevice : IGraphicalDevice
+    public class Device : IGraphicalDevice
     {
         /// <summary>
         /// Resource managers for all the surfaces and fonts.
@@ -15,12 +15,18 @@ namespace AnnexEngine.Graphics.Devices.Sfml
         private ResourceManager<Sprite> _surfaces;
         private ResourceManager<Font> _fonts;
 
+        private Window _window;
+
         /// <summary>
         /// Creates the SFML device, and loads all the necessary resources.
         /// </summary>
-        public SfmlDevice()
+        public Device()
         {
+            // Load all the required resources.
             this.LoadResources();
+
+            // Create a new window.
+            this._window = new Window("Sfml Demo");
         }
 
         /// <summary>
@@ -50,7 +56,18 @@ namespace AnnexEngine.Graphics.Devices.Sfml
         /// </summary>
         public void Draw()
         {
-            // TODO: Implement this.
+            // Capture events from the mouse and keyboard.
+            this._window.DispatchEvents();
+
+            // Clear the drawing surface.
+            this._window.Clear(Color.Black);
+
+            // TODO: Draw the actual game.
+
+            // TODO: Draw the UI.
+
+            // Update the drawing surface with what has been drawn.
+            this._window.Display();
         }
 
         /// <summary>
