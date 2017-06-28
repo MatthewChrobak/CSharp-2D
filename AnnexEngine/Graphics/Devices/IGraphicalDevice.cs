@@ -1,4 +1,4 @@
-﻿using AnnexEngine.Graphics.Content.Contexts;
+﻿using AnnexEngine.Graphics.Resources.Contexts;
 
 namespace AnnexEngine.Graphics.Devices
 {

@@ -1,4 +1,4 @@
-﻿namespace AnnexEngine.Graphics.Content.Contexts
+﻿namespace AnnexEngine.Graphics.Resources.Contexts
 {
     /// <summary>
     /// Specifies how a surface should be drawn.
