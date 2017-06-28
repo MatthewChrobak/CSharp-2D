@@ -90,6 +90,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Devices\Sfml\Extensions.cs" />
+    <Compile Include="Devices\Sfml\Window.cs" />
     <Compile Include="Resources\Contexts\SurfaceContext.cs" />
     <Compile Include="Resources\Contexts\TextContext.cs" />
     <Compile Include="Devices\DeviceType.cs" />
@@ -98,7 +100,7 @@
     <Compile Include="Devices\IGraphicalDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ResourceManager.cs" />
-    <Compile Include="Devices\Sfml\SfmlDevice.cs" />
+    <Compile Include="Devices\Sfml\Device.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
