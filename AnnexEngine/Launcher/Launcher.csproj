@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61BF7C24-FEFD-43E0-A571-73DB1F804D2E}</ProjectGuid>
+    <ProjectGuid>{C5C3E4DA-ED39-4D68-8F60-12BA0E85830C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AnnexEngine.Launcher</RootNamespace>
