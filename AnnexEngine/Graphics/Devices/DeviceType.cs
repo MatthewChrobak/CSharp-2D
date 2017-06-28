@@ -1,4 +1,4 @@
-﻿namespace AnnexEngine.Graphics
+﻿namespace AnnexEngine.Graphics.Devices
 {
     public enum DeviceType
     {
