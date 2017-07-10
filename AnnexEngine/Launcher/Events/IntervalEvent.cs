@@ -34,8 +34,8 @@ namespace AnnexEngine.Launcher.Events
         /// Creates an IntervalEvent object with the specified interval and event.
         /// </summary>
         /// <param name="interval">The interval in milliseconds at which the event-handler will be run.</param>
-        /// <param name="event">The event to run after the specified interval.</param>
-        public IntervalEvent(int interval, Action @event)
+        /// <param name="e">The event to run after the specified interval.</param>
+        public IntervalEvent(int interval, Action e)
         {
             // Set the elapsed waiting time to 0.
             this._elapsedWaitingTime = 0;
@@ -45,7 +45,7 @@ namespace AnnexEngine.Launcher.Events
 
             // Store the interval and the event.
             this._interval = interval;
-            this._event = @event;
+            this._event = e;
         }
 
         /// <summary>
