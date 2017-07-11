@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Data\Settings.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\IntervalEvent.cs" />
     <Compile Include="Application\AppBehaviour.cs" />
