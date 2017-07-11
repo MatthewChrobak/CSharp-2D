@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -67,19 +67,29 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\..\..\..\..\Copy\Programming\C#\SFML\2.2\64 Bit\lib\sfmlnet-audio-2.dll</HintPath>
-    </Reference>
+  <ItemGroup Condition=" '$(Platform)' == 'x64' ">
     <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\..\..\..\..\Copy\Programming\C#\SFML\2.2\64 Bit\lib\sfmlnet-graphics-2.dll</HintPath>
+      <HintPath>C:\SFML 2.2\64\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-system-2">
-      <HintPath>..\..\..\..\..\Copy\Programming\C#\SFML\2.2\64 Bit\lib\sfmlnet-system-2.dll</HintPath>
+      <HintPath>C:\SFML 2.2\64\lib\sfmlnet-system-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-window-2">
-      <HintPath>..\..\..\..\..\Copy\Programming\C#\SFML\2.2\64 Bit\lib\sfmlnet-window-2.dll</HintPath>
+      <HintPath>C:\SFML 2.2\64\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Platform)' != 'x64'">
+    <Reference Include="sfmlnet-graphics-2">
+      <HintPath>C:\SFML 2.2\86\lib\sfmlnet-graphics-2.dll</HintPath>
+    </Reference>
+    <Reference Include="sfmlnet-system-2">
+      <HintPath>C:\SFML 2.2\86\lib\sfmlnet-system-2.dll</HintPath>
+    </Reference>
+    <Reference Include="sfmlnet-window-2">
+      <HintPath>C:\SFML 2.2\86\lib\sfmlnet-window-2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -102,6 +112,5 @@
     <Compile Include="Resources\ResourceManager.cs" />
     <Compile Include="Devices\Sfml\Device.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
