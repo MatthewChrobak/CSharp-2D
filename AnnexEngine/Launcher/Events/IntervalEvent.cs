@@ -31,7 +31,7 @@ namespace AnnexEngine.Launcher.Events
         private Timer _timer;
 
         /// <summary>
-        /// Creates an IntervalEvent object with the specified interval and event.
+        /// Stores the specified interval and given event.
         /// </summary>
         /// <param name="interval">The interval in milliseconds at which the event-handler will be run.</param>
         /// <param name="e">The event to run after the specified interval.</param>
@@ -49,7 +49,7 @@ namespace AnnexEngine.Launcher.Events
         }
 
         /// <summary>
-        /// Checks to see if the interval event
+        /// Runs the interval event if the elapsed wait time is equal to or greater than its interval.
         /// </summary>
         public void Update()
         {

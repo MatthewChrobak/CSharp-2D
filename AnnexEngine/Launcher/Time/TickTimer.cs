@@ -14,7 +14,7 @@ namespace AnnexEngine.Launcher.Time
         private int _tickStartTime;
 
         /// <summary>
-        /// Creates a timer object measuring time from its moment of creation.
+        /// Measures time elapsed from its moment of creation, or its last reset.
         /// </summary>
         public TickTimer()
         {
