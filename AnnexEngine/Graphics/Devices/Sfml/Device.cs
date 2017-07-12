@@ -7,34 +7,43 @@ namespace AnnexEngine.Graphics.Devices.Sfml
     /// <summary>
     /// A graphical device implemented using SFML.
     /// </summary>
-    public class SfmlDevice : IGraphicalDevice
+    public class Device : IGraphicalDevice
     {
         /// <summary>
-        /// Resource managers for all the surfaces and fonts.
+        /// Resource managers for all the textures and fonts.
         /// </summary>
-        private ResourceManager<Sprite> _surfaces;
+        private ResourceManager<Texture> _textures;
         private ResourceManager<Font> _fonts;
+        
+        /// <summary>
+        /// The window of the graphical device.
+        /// </summary>
+        private Window _window;
 
         /// <summary>
         /// Creates the SFML device, and loads all the necessary resources.
         /// </summary>
-        public SfmlDevice()
+        public Device()
         {
+            // Load all the required resources.
             this.LoadResources();
+
+            // Create a new window.
+            this._window = new Window(960, 640, "Sfml Demo");
         }
 
         /// <summary>
-        /// Loads all the resources needed to draw surfaces and text.
+        /// Loads all the resources needed to draw textures and text.
         /// </summary>
         private void LoadResources()
         {
             // Initialize the managers.
-            this._surfaces = new ResourceManager<Sprite>();
+            this._textures = new ResourceManager<Texture>();
             this._fonts = new ResourceManager<Font>();
 
             // Load all the .png images from the GraphicsPath.
-            this._surfaces.LoadFiles(GraphicsManager.GraphicsPath, 
-                filepath => new Sprite(new Texture(filepath)), 
+            this._textures.LoadFiles(GraphicsManager.GraphicsPath,
+                filepath => new Texture(filepath), 
                 filepath => filepath.EndsWith(".png")
                 );
 
@@ -50,22 +59,38 @@ namespace AnnexEngine.Graphics.Devices.Sfml
         /// </summary>
         public void Draw()
         {
-            // TODO: Implement this.
+            // Capture events from the mouse and keyboard.
+            this._window.DispatchEvents();
+
+            // Clear the device.
+            this._window.Clear(Color.Black);
+
+            // TODO: Draw the actual game.
+
+            // TODO: Draw the UI.
+
+            // Update the device with what has been drawn.
+            this._window.Display();
         }
 
         /// <summary>
-        /// Applies a context to the specified surface, and draws it onto the device.
+        /// Applies a context to the specified texture, and draws it onto the device.
         /// </summary>
-        /// <param name="surfaceName">The name of the surface to be drawn.</param>
-        /// <param name="context">The context to be applied to the surface.</param>
-        public void DrawSurface(string surfaceName, SurfaceContext context)
+        /// <param name="textureName">The name of the texture to be drawn.</param>
+        /// <param name="context">The context to be applied to the texture.</param>
+        public void DrawTexture(string textureName, TextureContext context)
         {
-            // Retrieve the surface from its resource manager.
-            var surface = this._surfaces.GetResource(surfaceName);
+            // Retrieve the texture from its resource manager.
+            var texture = this._textures.GetResource(textureName);
 
-            // Make sure the surface was found.
-            if (surface != null) {
-                // TODO: Implement this.
+            // Make sure the texture was found.
+            if (texture != null) {
+                // Create a sprite from the texture, and apply the context to the sprite.
+                // TODO: Expand on this.
+                var sprite = new Sprite(texture);
+
+                // Render the sprite.
+                this._window.Draw(sprite);
             }
         }
 
