@@ -20,7 +20,7 @@ namespace AnnexEngine.Graphics.Devices.Sfml
         /// <param name="width">The desired width of the window.</param>
         /// <param name="height">The desired height of the window.</param>
         /// <param name="title">The desired title of the window.</param>
-        public Window(uint width, uint height, string title) : base(new VideoMode(), title)
+        public Window(uint width, uint height, string title) : base(new VideoMode(width, height), title)
         {
             // Resize the window to the desired size.
             this.Resize(width, height);
