@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnnexEngine.IO.FileManagement;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -27,8 +28,9 @@ namespace AnnexEngine.Graphics.Resources
             if (this._resources == null) {
                 this._resources = new Dictionary<string, T>();
             }
-            
-            // TODO: Ensure that the path is a valid directory.
+
+            // Ensure the directory exists by creating it.
+            FileSystem.ValidateDirectory(baseDirectory);
             
             // Go through every file in the given directory.
             foreach (string filepath in Directory.GetFiles(baseDirectory, "*", SearchOption.AllDirectories)) {
