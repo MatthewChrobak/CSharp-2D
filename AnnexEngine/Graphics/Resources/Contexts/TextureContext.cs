@@ -1,9 +1,9 @@
 ﻿namespace AnnexEngine.Graphics.Resources.Contexts
 {
     /// <summary>
-    /// Specifies how a surface should be drawn.
+    /// Specifies how a texture should be drawn.
     /// </summary>
-    public class SurfaceContext
+    public class TextureContext
     {
         // TODO: Placeholder class. Develop this later.
     }
