@@ -1,9 +1,7 @@
 *.suo
 *.user
 *.txt
-*.dll
 *.ttf
 **bin/
 **obj/
-**libs/
 *.zip
