@@ -54,6 +54,11 @@
     <Compile Include="Time\Behaviour\Timer.cs" />
     <Compile Include="Time\TickTimer.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Graphics\Graphics.csproj">
+      <Project>{bac2b63e-b7cf-4bdb-a7a8-73661dbe34a3}</Project>
+      <Name>Graphics</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
