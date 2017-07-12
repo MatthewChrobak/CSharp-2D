@@ -155,7 +155,7 @@ del "csfml-audio-2.dll"
 del "csfml-graphics-2.dll"
 del "csfml-system-2.dll"
 del "csfml-window-2.dll"
-del "libsndfile-1"
+del "libsndfile-1.dll"
 del "openal32.dll"
 del "OpenTK.Compatibility.dll"
 del "OpenTK.dll"</PreBuildEvent>
