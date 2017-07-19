@@ -1,4 +1,5 @@
-﻿using AnnexEngine.Launcher.Events;
+﻿using AnnexEngine.Data.Settings;
+using AnnexEngine.Launcher.Events;
 
 namespace AnnexEngine.Launcher.Application
 {
@@ -12,6 +13,12 @@ namespace AnnexEngine.Launcher.Application
         /// </summary>
         private bool _closing = false;
 
+        /// <summary>
+        /// The settings for the application.
+        /// </summary>
+        public Settings Settings { private set; get; }
+        private readonly string _appSettingsFile = "settings.xml";
+
 
         /// <summary>
         /// Initializes the systems needed for the application.
@@ -21,7 +28,10 @@ namespace AnnexEngine.Launcher.Application
         /// <summary>
         /// Saves and destroys any components used by the application.
         /// </summary>
-        internal abstract void Exit();
+        internal virtual void Exit()
+        {
+            this.Settings.SaveToFile(this._appSettingsFile);
+        }
 
 
         /// <summary>
@@ -29,6 +39,12 @@ namespace AnnexEngine.Launcher.Application
         /// </summary>
         public AppBehaviour()
         {
+            // Load the settings before running the applications setup, in case
+            // we need to refer to any settings.
+            this.Settings = new Settings();
+            this.Settings.LoadSettingsFromFile(this._appSettingsFile);
+
+            // Run the application specific setup.
             this.Setup();
         }
 

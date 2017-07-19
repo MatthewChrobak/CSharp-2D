@@ -1,4 +1,7 @@
-﻿namespace AnnexEngine.Launcher.Application.Frameworks
+﻿using AnnexEngine.Graphics.Devices;
+using System;
+
+namespace AnnexEngine.Launcher.Application.Frameworks
 {
     /// <summary>
     /// Defines the behaviour of a singleplayer game client.
@@ -11,11 +14,12 @@
         internal sealed override void Setup()
         {
             // TODO: Load game data.
+            this.Settings.AddSettingIfNotExists("device", "SFML");
 
             // TODO: Initialize audio.
 
-            // Initialize game graphics.
-            GraphicsManager.InitializeDevice(Graphics.Devices.DeviceType.SFML);
+            // Initialize the graphics device off of the settings entry.
+            GraphicsManager.InitializeDevice((DeviceType)Enum.Parse(typeof(DeviceType), this.Settings.GetSetting("device")));
 
             // Render the game at 60 fps.
             this.AddEvent(16, () => GraphicsManager.Device.Draw());
