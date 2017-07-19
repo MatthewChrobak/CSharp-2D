@@ -79,7 +79,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\Data\Settings.cs" />
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\IntervalEvent.cs" />
     <Compile Include="Application\AppBehaviour.cs" />
@@ -92,6 +91,10 @@
     <Compile Include="Time\TickTimer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{437ccc31-3bd2-4a2f-9659-92b4eff6ae05}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Graphics\Graphics.csproj">
       <Project>{bac2b63e-b7cf-4bdb-a7a8-73661dbe34a3}</Project>
       <Name>Graphics</Name>
