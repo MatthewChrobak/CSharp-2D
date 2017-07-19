@@ -107,7 +107,7 @@ namespace AnnexEngine.Data.Settings
         /// Loads a settings file, and adds its settings to the current collection.
         /// </summary>
         /// <param name="filepath">The filepath of the settings file to load settings from.</param>
-        public void SetSettingsFromFile(string filepath)
+        public void LoadSettingsFromFile(string filepath)
         {
             if (File.Exists(filepath)) {
                 using (var fs = new FileStream(filepath, FileMode.OpenOrCreate)) {
