@@ -7,7 +7,7 @@
     <ProjectGuid>{437CCC31-3BD2-4A2F-9659-92B4EFF6AE05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Data</RootNamespace>
+    <RootNamespace>AnnexEngine.Data</RootNamespace>
     <AssemblyName>Data</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
